@@ -38,7 +38,7 @@ const Navigation = () => {
 
           <li className={style.listItem}>
             <div className={style.list}>
-              <Link href="/admin/">
+              <Link href="/admin/information">
                 <a className={style.anchor}>
                   {" "}
                   <span>
@@ -52,7 +52,7 @@ const Navigation = () => {
 
           <li className={style.listItem}>
             <div className={style.list}>
-              <Link href="/admin/">
+              <Link href="/admin/donation">
                 <a className={style.anchor}>
                   {" "}
                   <span>
@@ -66,7 +66,7 @@ const Navigation = () => {
 
           <li className={style.listItem}>
             <div className={style.list}>
-              <Link href="/admin/">
+              <Link href="/admin/event">
                 <a className={style.anchor}>
                   {" "}
                   <span>
@@ -80,7 +80,7 @@ const Navigation = () => {
 
           <li className={style.listItem}>
             <div className={style.list}>
-              <Link href="/admin/">
+              <Link href="/admin/file">
                 <a className={style.anchor}>
                   {" "}
                   <span>
@@ -92,7 +92,7 @@ const Navigation = () => {
             </div>
           </li>
 
-          <li className={`${style.listItem} cursor-pointer`}>
+          {/* <li className={`${style.listItem} cursor-pointer`}>
             <div className={style.list}>
               <a className={style.anchor}>
                 {" "}
@@ -109,7 +109,7 @@ const Navigation = () => {
                 </Link>
               </li>
             </div>
-          </li>
+          </li> */}
         </ul>
       </div>
     </div>

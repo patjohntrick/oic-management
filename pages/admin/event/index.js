@@ -1,11 +1,8 @@
 import React from "react";
-import Cards from "../../components/admin/Dashboard/Cards";
-import DashboardSecondSection from "../../components/admin/Dashboard/DashboardSecondSection";
-import Navigation from "../../components/admin/Navigation";
-import Sidebar from "../../components/admin/Sidebar";
+import Navigation from "../../../components/admin/Navigation";
+import Sidebar from "../../../components/admin/Sidebar";
 
-const Dashboard = () => {
-  // Style
+const Event = () => {
   const style = {
     body: "h-screen relative",
     aside: "fixed w-[20%] z-20",
@@ -27,16 +24,16 @@ const Dashboard = () => {
       </aside>
       {/* content */}
       <div className={`${style.cardContainer} container`}>
-        <header className={style.dashboardText}>Dashboard</header>
-        <div className="">
-          <Cards />
-        </div>
-        <div>
-          <DashboardSecondSection />
-        </div>
+        <header className={style.dashboardText}>Event Manager</header>
+        {/* <div className="">
+           <Cards />
+         </div>
+         <div>
+           <DashboardSecondSection />
+         </div> */}
       </div>
     </section>
   );
 };
 
-export default Dashboard;
+export default Event;
