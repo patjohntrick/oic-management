@@ -1,26 +1,36 @@
-import React, { useContext } from "react";
-import Content from "../../../components/admin/Information/Content";
-import FirstSection from "../../../components/admin/Information/FirstSection";
-import Header from "../../../components/admin/Information/Header";
+import axios from "axios";
+import React from "react";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
 import { UserContext } from "../../../context/UserContext";
+import UserId from "./UserId";
 
-// URI
 const baseUri = "http://localhost:5000";
+export const getStaticPaths = async () => {
+  const res = await axios.get(`${baseUri}/user`);
+  const data = await res.data;
 
-export const getStaticProps = async () => {
-  const res = await fetch(`${baseUri}/user`);
-  const data = await res.json();
+  const paths = data.map((data) => {
+    return {
+      params: { id: data._id.toString() },
+    };
+  });
+  return {
+    paths,
+    fallback: false,
+  };
+};
+export const getStaticProps = async (req) => {
+  const id = req.params.id;
+  const res = await axios.get(`${baseUri}/user/${id}`);
+  const data = await res.data;
 
   return {
-    props: { users: data },
+    props: { data },
   };
 };
 
-const Information = ({ users }) => {
-  // console.log(users);
-  // Style
+const Id = ({ data }) => {
   const style = {
     body: "h-screen relative",
     aside: "fixed w-[20%] z-20",
@@ -43,12 +53,14 @@ const Information = ({ users }) => {
       {/* content */}
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Information</header>
-
-        <section>
-          <UserContext.Provider value={users}>
+        <UserContext.Provider value={data}>
+          <UserId />
+        </UserContext.Provider>
+        {/* <section>
+          <UserContext.Provider>
             <Content />
           </UserContext.Provider>
-        </section>
+        </section> */}
         {/* <div className="">
           <Header />  
         </div>
@@ -60,4 +72,4 @@ const Information = ({ users }) => {
   );
 };
 
-export default Information;
+export default Id;

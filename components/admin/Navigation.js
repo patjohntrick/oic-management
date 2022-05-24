@@ -9,7 +9,7 @@ const Navigation = () => {
     inputSearch:
       "py-3 px-4 outline-none border-[1px] border-black/40 hover:border-black/60 rounded text-sm w-[250px] focus:border-black/60",
     user: "flex items-center w-auto w-[60px] justify-between",
-    logo: "font-semibold text-heading text-xl",
+    logo: "font-semibold text-black/80 text-xl",
   };
   return (
     <div className={style.container}>

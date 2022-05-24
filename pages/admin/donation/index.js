@@ -1,4 +1,5 @@
 import React from "react";
+import Content from "../../../components/admin/Givings/Content";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
 
@@ -25,12 +26,9 @@ const Donation = () => {
       {/* content */}
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Givings/Tithes</header>
-        {/* <div className="">
-           <Cards />
-         </div>
-         <div>
-           <DashboardSecondSection />
-         </div> */}
+        <div>
+          <Content />
+        </div>
       </div>
     </section>
   );

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaUsers } from "react-icons/fa";
 import { BiDonateHeart } from "react-icons/bi";
 import { BsCalendarEventFill } from "react-icons/bs";
 import { GiFlowerEmblem } from "react-icons/gi";
+import { UserContext } from "../../../context/UserContext";
+
+// Total Member
+const TotalMember = () => {
+  const dashboadUserList = useContext(UserContext);
+  const userCount = dashboadUserList.map((user) => user._id);
+  // console.log(userCount);
+  return <p>{userCount.length}</p>;
+};
 
 const Cards = () => {
   // style
@@ -21,8 +30,10 @@ const Cards = () => {
           <FaUsers />
         </div>
         <div className="text-container">
-          <p className={style.totalUser}>26</p>
-          <p className={style.totalName}>Total Members</p>
+          <div className={style.totalUser}>
+            <TotalMember />
+          </div>
+          <div className={style.totalName}>Total Members</div>
         </div>
       </div>
 

@@ -1,10 +1,40 @@
-import React from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useRef } from "react";
 import Cards from "../../components/admin/Dashboard/Cards";
+import Content from "../../components/admin/Dashboard/Content";
 import DashboardSecondSection from "../../components/admin/Dashboard/DashboardSecondSection";
 import Navigation from "../../components/admin/Navigation";
 import Sidebar from "../../components/admin/Sidebar";
+import { UserContext } from "../../context/UserContext";
 
-const Dashboard = () => {
+const baseUri = "http://localhost:5000";
+export const getStaticProps = async () => {
+  const res = await axios.get(`${baseUri}/user`);
+  const data = await res.data;
+
+  return {
+    props: { dashboadUserList: data },
+  };
+};
+
+const Dashboard = ({ dashboadUserList }) => {
+  // Camera
+  // const videoRef = useRef(null);
+  // const getUserCamera = () => {
+  //   navigator.mediaDevices
+  //     .getUserMedia({
+  //       video: true,
+  //     })
+  //     .then((stream) => {
+  //       const video = videoRef.current;
+  //       video.srcObject = stream;
+  //       video.play();
+  //     })
+  //     .catch((e) => console.error(e));
+  // };
+  // useEffect(() => {
+  //   getUserCamera();
+  // }, [videoRef]);
   // Style
   const style = {
     body: "h-screen relative",
@@ -28,11 +58,11 @@ const Dashboard = () => {
       {/* content */}
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Dashboard</header>
+        {/* <video ref={videoRef} className="w-[100px] h-[100px] border-2" /> */}
         <div className="">
-          <Cards />
-        </div>
-        <div>
-          <DashboardSecondSection />
+          <UserContext.Provider value={dashboadUserList}>
+            <Content />
+          </UserContext.Provider>
         </div>
       </div>
     </section>
