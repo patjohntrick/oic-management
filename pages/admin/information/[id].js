@@ -3,7 +3,7 @@ import React from "react";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
 import { UserContext } from "../../../context/UserContext";
-import UserId from "./UserId";
+import UserId from "../../../components/admin/Information/UserId";
 
 const baseUri = "http://localhost:5000";
 export const getStaticPaths = async () => {
