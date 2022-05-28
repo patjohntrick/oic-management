@@ -118,7 +118,7 @@ const UserId = () => {
           </div>
         </div>
         <div className="donation grid grid-cols-2">
-          <div className="first-container">
+          <div className="first-container border-r-[1px] border-black/60 w-[90%]">
             <header className="text-heading text-xl font-semibold mb-2">
               Donations
             </header>
@@ -140,24 +140,24 @@ const UserId = () => {
               </div>
             </div>
           </div>
-          <div className="first-container">
+          <div className="first-containwer">
             <header className="text-heading text-xl font-semibold mb-2">
               Other Offerings
             </header>
             <div className="dontaion-container">
               <div className="donation">
                 <header className="grid grid-cols-2 font-medium text-heading">
-                  <p>Amount</p>
+                  <p>Offer</p>
                   <p>Date</p>
                 </header>
                 <div className="grid grid-cols-2 mb-2 text-heading text-sm">
-                  <p>P400.00</p>
+                  <p>fruits</p>
                   <p>{data.birthday}</p>
                 </div>
               </div>
               <div className="total-donation">
                 <p className=" text-heading">
-                  <span className="font-medium">Total: </span>P435.00
+                  <span className="font-medium">Total givings: </span>1
                 </p>
               </div>
             </div>
