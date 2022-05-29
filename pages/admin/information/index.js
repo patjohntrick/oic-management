@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import Content from "../../../components/admin/Information/Content";
 import FirstSection from "../../../components/admin/Information/FirstSection";
 import Header from "../../../components/admin/Information/Header";
@@ -26,7 +26,7 @@ const Information = ({ users }) => {
     aside: "fixed w-[20%] z-20",
     header: "fixed w-[80%] ml-[20%] z-20",
     cardContainer:
-      "absolute top-[10vh] left-[20%] w-[80%] px-6 py-4 bg-purple-100 h-[90vh]",
+      "absolute top-[10vh] left-[20%] w-[80%] px-6 py-4 bg-purple-100 min-h-[90vh]",
     cardWrapper: "flex",
     dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
   };

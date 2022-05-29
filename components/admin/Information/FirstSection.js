@@ -10,7 +10,7 @@ const FirstSection = () => {
     box: "box bg-white rounded shadow hover:shadow-lg pt-6 pb-5 px-4 w-[250px]",
     imgContainer: "img-container grid place-items-center mb-3",
     img: " w-[90px] h-[90px] object-cover rounded-full ",
-    name: " font-semibold  ",
+    name: " font-semibold capitalize ",
     dept: "text-sm capitalize",
     btnContainer: "btn-container",
     btn: " text-white font-medium bg-purple-800 border-none outline-none px-4 py-2 shadow cursor-pointer rounded hover:bg-purple-900 text-sm ",

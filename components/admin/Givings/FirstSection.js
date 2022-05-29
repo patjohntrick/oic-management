@@ -3,7 +3,10 @@ import { BiDonateHeart } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiAliensFill } from "react-icons/ri";
 import { FaUserCheck } from "react-icons/fa";
+import MoneyDonation from "./MoneyDonation";
+import OtherOfferings from "./OtherOfferings";
 
+// modal component
 const Modal = ({ handleModal }) => {
   const style = {
     section:
@@ -18,12 +21,14 @@ const Modal = ({ handleModal }) => {
       "px-4 py-2 rounded bg-purple-700 text-white font-medium cursor-pointer hover:bg-purple-800 capitalize flex gap-1 items-center",
     guestBtn:
       "px-6 py-2 rounded bg-green-700 text-white font-medium cursor-pointer hover:bg-green-800 capitalize flex gap-1 items-center",
+    modalContainer:
+      "modalContainer bg-white rounded w-[300px] p-2 border-t-2 border-purple-800",
   };
   return (
     <section className={style.section}>
-      <div className="modalContainer bg-white rounded w-[300px] p-2 border-t-2 border-purple-800">
+      <div className={style.modalContainer}>
         <nav className={style.nav}>
-          <div className="module">Givings/Tithes</div>
+          <div className="module">Givings/Tithes | Donate</div>
           <div className={style.navClose} onClick={handleModal}>
             <AiOutlineClose />
           </div>
@@ -50,8 +55,19 @@ const Modal = ({ handleModal }) => {
   );
 };
 
+// main component
 const FirstSection = () => {
   const [modal, setModal] = useState(false);
+  const [typeDonation, setTypeDonation] = useState(false);
+
+  // type of donation
+  const handleMoneyDonation = () => {
+    setTypeDonation(false);
+  };
+  const handleOtherOfferings = () => {
+    setTypeDonation(true);
+  };
+  console.log(typeDonation);
 
   // Modal
   const handleModal = () => {
@@ -60,23 +76,40 @@ const FirstSection = () => {
   // style
   const style = {
     container: " mt-4",
-    headerTitle: "text-lg text-[#444a53] font-medium mb-2",
+    headerTitle: "text-lg text-[#444a53] flex gap-3 text-sm",
     contentContainer: " rounded bg-white shadow",
-    tableHeader:
-      "grid grid-cols-5 capitalize text-heading font-medium mb-2 bg-purple-50 p-4 rounded",
-    tableContent: "grid grid-cols-5 capitalize text-heading text-sm px-4 py-4",
-    header: "flex justify-between items-start mb-2",
+    header: "flex justify-between items-center mb-2 ",
     headerBtn:
-      "px-4 py-2 rounded bg-purple-700 text-white font-medium cursor-pointer hover:bg-purple-800 capitalize flex gap-1 items-center",
+      "px-4 py-3 rounded bg-purple-700 text-white font-medium cursor-pointer hover:bg-purple-800 capitalize flex gap-1 items-center text-sm shadow-md",
+    totalGivings: `${
+      typeDonation == false
+        ? "bg-rose-700 text-white"
+        : " text-rose-700 border-rose-700 hover:bg-rose-700 hover:text-white "
+    } cursor-pointer px-4 py-3 transition-all shadow-md rounded font-medium text-sm border-[1px] `,
+    totalOfferings: `${
+      typeDonation == true
+        ? "bg-orange-700 text-white"
+        : " text-orange-700 border-orange-700 hover:bg-orange-700 hover:text-white "
+    } cursor-pointer px-4 py-3 transition-all shadow-md rounded font-medium text-sm border-[1px] `,
   };
-  console.log(modal);
+  // console.log(modal);
   return (
     <>
       {modal ? <Modal handleModal={handleModal} /> : null}
       <section className={style.container}>
         <div className="recent-user">
           <header className={style.header}>
-            <header className={style.headerTitle}>Total Givings: 69</header>
+            <header className={style.headerTitle}>
+              <p className={style.totalGivings} onClick={handleMoneyDonation}>
+                Total Givings: 69
+              </p>
+              <p
+                className={style.totalOfferings}
+                onClick={handleOtherOfferings}
+              >
+                Other Offerings : 12
+              </p>
+            </header>
             <div className="btn-container">
               <button className={style.headerBtn} onClick={handleModal}>
                 <BiDonateHeart />
@@ -85,31 +118,9 @@ const FirstSection = () => {
             </div>
           </header>
           <div className={`container ${style.contentContainer}`}>
-            <header className={style.tableHeader}>
-              <p>Name</p>
-              <p>mobile no.</p>
-              <p>residence</p>
-              <p>amount</p>
-              <p>date</p>
-            </header>
-
-            <div className={style.tableContent}>
-              <p>John Patrick Resurreccion</p>
-              <p>09566723445</p>
-              <p>Catanauan</p>
-              <p>P100.00</p>
-              <p>Mar 01 2000</p>
-            </div>
-            <hr />
-
-            <div className={style.tableContent}>
-              <p>Cristina Go...</p>
-              <p>09566723445</p>
-              <p>Mulanay</p>
-              <p>P450.00</p>
-              <p>Aug 31 1999</p>
-            </div>
-            <hr />
+            {typeDonation == false ? <MoneyDonation /> : <OtherOfferings />}
+            {/* <MoneyDonation />
+            <OtherOfferings /> */}
           </div>
         </div>
       </section>
