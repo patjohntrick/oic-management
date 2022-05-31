@@ -3,7 +3,7 @@ import { UserContext } from "../../../context/UserContext";
 import Link from "next/link";
 import { IoMdTrash } from "react-icons/io";
 
-const FirstSection = () => {
+const FirstSection = ({ search }) => {
   const baseUri = "http://localhost:5000";
   const users = useContext(UserContext);
   console.log(users);
@@ -31,36 +31,44 @@ const FirstSection = () => {
   };
   return (
     <section className={style.container}>
-      {users.map((user) => {
-        return (
-          <div className={style.box} key={user._id}>
-            <div
-              className="grid place-items-end cursor-pointer"
-              onClick={() => handleDelete(user._id)}
-            >
-              <p className="text-xl text-red-600 p-2 rounded-full hover:bg-red-100 transition-all">
-                <IoMdTrash />
-              </p>
+      {users
+        .filter((user) => {
+          if (search === "") {
+            return user;
+          } else if (user.name.toLowerCase().includes(search.toLowerCase())) {
+            return user;
+          }
+        })
+        .map((user) => {
+          return (
+            <div className={style.box} key={user._id}>
+              <div
+                className="grid place-items-end cursor-pointer"
+                onClick={() => handleDelete(user._id)}
+              >
+                <p className="text-xl text-red-600 p-2 rounded-full hover:bg-red-100 transition-all">
+                  <IoMdTrash />
+                </p>
+              </div>
+              <div className={style.imgContainer}>
+                <img
+                  src={`https://avatars.dicebear.com/api/adventurer-neutral/${user.name}.svg`}
+                  alt=""
+                  className={style.img}
+                />
+              </div>
+              <div className="text-container mb-4">
+                <p className={style.name}>{user.name}</p>
+                <p className={style.dept}>{user.ministry}</p>
+              </div>
+              <div className={style.btnContainer}>
+                <Link href={`/admin/information/${user._id}`}>
+                  <a className={style.btn}>View Profile</a>
+                </Link>
+              </div>
             </div>
-            <div className={style.imgContainer}>
-              <img
-                src={`https://avatars.dicebear.com/api/adventurer-neutral/${user.name}.svg`}
-                alt=""
-                className={style.img}
-              />
-            </div>
-            <div className="text-container mb-4">
-              <p className={style.name}>{user.name}</p>
-              <p className={style.dept}>{user.ministry}</p>
-            </div>
-            <div className={style.btnContainer}>
-              <Link href={`/admin/information/${user._id}`}>
-                <a className={style.btn}>View Profile</a>
-              </Link>
-            </div>
-          </div>
-        );
-      })}
+          );
+        })}
       {/* <div className={style.box}>
         <div className={style.imgContainer}>
           <img
