@@ -9,9 +9,8 @@ import { UserContext } from "../../context/UserContext";
 
 const baseUri = "http://localhost:5000";
 export const getStaticProps = async () => {
-  const res = await axios.get(`${baseUri}/user`);
+  const res = await axios.get(`${baseUri}/user/dashboard`);
   const data = await res.data;
-
   return {
     props: { dashboadUserList: data },
   };
