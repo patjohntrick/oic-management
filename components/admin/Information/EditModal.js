@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { UserContext, BaseUri } from "../../../context/UserContext";
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 const EditModal = ({ handleEditUser, data }) => {
   const baseUri = useContext(BaseUri);
+  const router = useRouter();
 
   const [name, setName] = useState(data.name);
   const [gender, setGender] = useState(data.gender);
@@ -13,7 +15,7 @@ const EditModal = ({ handleEditUser, data }) => {
   const [birthday, setBirthday] = useState(data.birthday);
   const [email, setEmail] = useState(data.email);
   const [ministry, setMinistry] = useState(data.ministry);
-  const [password, setPassword] = useState(data.password);
+  const [password, setPassword] = useState();
 
   const [emailError, setEmailError] = useState({
     message: "",
@@ -44,12 +46,13 @@ const EditModal = ({ handleEditUser, data }) => {
       birthday,
       email,
       ministry,
-      password,
+      number,
     };
 
-    const res = await axios.put(`${baseUri}/edit/${data._id}`, editData);
+    const res = await axios.put(`${baseUri}/user/edit/${data._id}`, editData);
     const resData = await res.data;
-    console.log(resData);
+    router.reload();
+    // console.log(resData);
   };
 
   return (
@@ -175,12 +178,13 @@ const EditModal = ({ handleEditUser, data }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
+            {/* temporary disabled */}
+            {/* <div className="grid grid-cols-2 gap-2">
               <div>
                 <label htmlFor="email" className={style.label}>
                   Email <span className={style.labelSpan}>*</span>
                 </label>
-                {/* trigger when email is invalid */}
+              
                 <label htmlFor="" className="text-xs ml-2 text-red-800">
                   {emailError.message}
                 </label>
@@ -210,11 +214,11 @@ const EditModal = ({ handleEditUser, data }) => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  required
+                  // required
                   className={style.input}
                 />
               </div>
-            </div>
+            </div> */}
 
             <div className="grid place-items-center">
               <button

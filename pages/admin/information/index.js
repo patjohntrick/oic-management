@@ -32,14 +32,13 @@ const Information = ({ users }) => {
   };
   return (
     <section className={style.body}>
-      {/* header */}
-      <header className={style.header}>
+      {/* <header className={style.header}>
         <Navigation />
       </header>
-      {/* sidebar */}
+     
       <aside className={style.aside}>
         <Sidebar />
-      </aside>
+      </aside> */}
       {/* content */}
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Information</header>

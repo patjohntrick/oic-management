@@ -13,10 +13,11 @@ const Navigation = () => {
     listItem: "hover:bg-white/5",
     list: "",
     anchor: "flex item-center gap-3 pl-[40px] py-4",
+    aside: "fixed w-[20%] z-20 bg-nav h-screen",
   };
 
   return (
-    <div className=" bg-nav h-screen ">
+    <div className={style.aside}>
       <div>
         <div className="logo-contaier text-logo text-2xl font-semibold mb-4 text-center pt-[30px]">
           <p>OIC</p>

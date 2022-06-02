@@ -14,15 +14,14 @@ const Event = () => {
   };
   return (
     <section className={style.body}>
-      {/* header */}
-      <header className={style.header}>
+      {/* <header className={style.header}>
         <Navigation />
       </header>
-      {/* sidebar */}
+     
       <aside className={style.aside}>
         <Sidebar />
-      </aside>
-      {/* content */}
+      </aside> */}
+
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Event Manager</header>
         {/* <div className="">

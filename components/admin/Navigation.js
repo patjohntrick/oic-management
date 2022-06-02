@@ -5,11 +5,12 @@ const Navigation = () => {
   // style
   const style = {
     container:
-      "bg-white flex item-center justify-between px-6 border-b-2 border-purple-800 h-[10vh]",
+      "bg-white flex item-center justify-between px-6 border-b-2 border-purple-800 h-[10vh] fixed w-[80%] ml-[20%] z-20",
     inputSearch:
       "py-3 px-4 outline-none border-[1px] border-black/40 hover:border-black/60 rounded text-sm w-[250px] focus:border-black/60",
     user: "flex items-center w-auto w-[60px] justify-between",
     logo: "font-semibold text-black/80 text-xl",
+    header: "fixed w-[80%] ml-[20%] z-20",
   };
   return (
     <div className={style.container}>
