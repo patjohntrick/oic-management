@@ -1,64 +1,23 @@
 import React, { useState } from "react";
 import { BiDonateHeart } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
-import { RiAliensFill } from "react-icons/ri";
+import { RiAliensFill, RiCoinsLine } from "react-icons/ri";
+import { GiFlowerEmblem } from "react-icons/gi";
 import { FaUserCheck } from "react-icons/fa";
 import MoneyDonation from "./MoneyDonation";
 import OtherOfferings from "./OtherOfferings";
+import MoneyModal from "./MoneyModal";
+import OtherOfferingsModal from "./OtherOfferingsModal";
 
 // modal component
-const Modal = ({ handleModal }) => {
-  const style = {
-    section:
-      "absolute top-0 left-0 bg-black/80 p-2 text-heading grid place-items-center z-30 w-full h-full",
-    nav: "flex justify-between items-center mb-4",
-    navClose: "cursor-pointer text-purple-900",
-    container: " text-center mb-4",
-    headerText: "font-medium text-xl mb-2",
-    choices: "space-y-2",
-    btnContainer: "grid place-items-center",
-    memberBtn:
-      "px-4 py-2 rounded bg-purple-700 text-white font-medium cursor-pointer hover:bg-purple-800 capitalize flex gap-1 items-center",
-    guestBtn:
-      "px-6 py-2 rounded bg-green-700 text-white font-medium cursor-pointer hover:bg-green-800 capitalize flex gap-1 items-center",
-    modalContainer:
-      "modalContainer bg-white rounded w-[300px] p-2 border-t-2 border-purple-800",
-  };
-  return (
-    <section className={style.section}>
-      <div className={style.modalContainer}>
-        <nav className={style.nav}>
-          <div className="module">Givings/Tithes | Donate</div>
-          <div className={style.navClose} onClick={handleModal}>
-            <AiOutlineClose />
-          </div>
-        </nav>
-        <div className={style.container}>
-          <header className={style.headerText}>Donate as:</header>
-          <div className={style.choices}>
-            <div className={style.btnContainer}>
-              <button className={style.memberBtn}>
-                <FaUserCheck />
-                Member
-              </button>
-            </div>
-            <div className={style.btnContainer}>
-              <button className={style.guestBtn}>
-                <RiAliensFill />
-                Guest
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // main component
 const FirstSection = () => {
   const [modal, setModal] = useState(false);
   const [typeDonation, setTypeDonation] = useState(false);
+  const [subBtn, setSubBtn] = useState(false);
+  const [moneyModal, setMoneyModal] = useState(false);
+  const [otherOfferingsModal, setOtherOfferingsModal] = useState(false);
 
   // type of donation
   const handleMoneyDonation = () => {
@@ -68,6 +27,21 @@ const FirstSection = () => {
     setTypeDonation(true);
   };
   console.log(typeDonation);
+
+  // subBtn
+  const handleSubBtn = () => {
+    setSubBtn(!subBtn);
+  };
+
+  // type of donations modal
+  const handleMoneyModal = () => {
+    setMoneyModal(!moneyModal);
+    setSubBtn(false);
+  };
+  const handleOtherOfferingsModal = () => {
+    setOtherOfferingsModal(!otherOfferingsModal);
+    setSubBtn(false);
+  };
 
   // Modal
   const handleModal = () => {
@@ -79,8 +53,9 @@ const FirstSection = () => {
     headerTitle: "text-lg text-[#444a53] flex gap-3 text-sm",
     contentContainer: " rounded bg-white shadow",
     header: "flex justify-between items-center mb-2 ",
-    headerBtn:
-      "px-4 py-3 rounded bg-purple-700 text-white font-medium cursor-pointer hover:bg-purple-800 capitalize flex gap-1 items-center text-sm shadow-md",
+    headerBtn: `px-4 py-3 rounded bg-purple-700 text-white font-medium cursor-pointer hover:bg-purple-800 capitalize flex gap-1 items-center text-sm mb-2 ${
+      subBtn ? "shadow-none" : "shadow-md"
+    }`,
     totalGivings: `${
       typeDonation == false
         ? "bg-rose-700 text-white"
@@ -95,7 +70,12 @@ const FirstSection = () => {
   // console.log(modal);
   return (
     <>
-      {modal ? <Modal handleModal={handleModal} /> : null}
+      {moneyModal ? <MoneyModal handleMoneyModal={handleMoneyModal} /> : null}
+      {otherOfferingsModal ? (
+        <OtherOfferingsModal
+          handleOtherOfferingsModal={handleOtherOfferingsModal}
+        />
+      ) : null}
       <section className={style.container}>
         <div className="recent-user">
           <header className={style.header}>
@@ -110,11 +90,32 @@ const FirstSection = () => {
                 Other Offerings : 12
               </p>
             </header>
-            <div className="btn-container">
-              <button className={style.headerBtn} onClick={handleModal}>
+            <div className="btn-container relative">
+              <button className={style.headerBtn} onClick={handleSubBtn}>
                 <BiDonateHeart />
                 donate
               </button>
+              <div
+                className={`${
+                  subBtn ? "block" : "hidden"
+                }  absolute bg-purple-700 rounded shadow-lg p-2 space-y-2 capitalize font-medium text-sm w-full text-white`}
+              >
+                <div className="w-[20px] h-[20px] bg-purple-700 mb-4 rotate-45 -mt-2 absolute left-[80%] translate-x-[-80%] "></div>
+                <p
+                  className="cursor-pointer hover:text-red-400 flex gap-1 items-center"
+                  onClick={handleMoneyModal}
+                >
+                  <RiCoinsLine />
+                  money
+                </p>
+                <p
+                  className=" cursor-pointer hover:text-orange-400 flex gap-1 items-center"
+                  onClick={handleOtherOfferingsModal}
+                >
+                  <GiFlowerEmblem />
+                  other
+                </p>
+              </div>
             </div>
           </header>
           <div className={`container ${style.contentContainer}`}>

@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import Content from "../../../components/admin/Givings/Content";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
+import { UserContext } from "../../../context/UserContext";
 
-const Donation = () => {
+// URI
+const baseUri = "http://localhost:5000";
+
+export const getStaticProps = async () => {
+  const res = await fetch(`${baseUri}/user`);
+  const data = await res.json();
+
+  return {
+    props: { users: data },
+  };
+};
+
+const Donation = ({ users }) => {
+  console.log(users);
   const style = {
     body: "h-screen relative",
     aside: "fixed w-[20%] z-20",
@@ -26,7 +40,9 @@ const Donation = () => {
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Givings/Tithes</header>
         <div>
-          <Content />
+          <UserContext.Provider value={users}>
+            <Content />
+          </UserContext.Provider>
         </div>
       </div>
     </section>
