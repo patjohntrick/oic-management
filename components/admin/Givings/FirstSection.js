@@ -4,10 +4,10 @@ import { AiOutlineClose } from "react-icons/ai";
 import { RiAliensFill, RiCoinsLine } from "react-icons/ri";
 import { GiFlowerEmblem } from "react-icons/gi";
 import { FaUserCheck } from "react-icons/fa";
-import MoneyDonation from "./MoneyDonation";
-import OtherOfferings from "./OtherOfferings";
-import MoneyModal from "./MoneyModal";
-import OtherOfferingsModal from "./OtherOfferingsModal";
+import MoneyDonation from "./Table/MoneyDonation";
+import OtherOfferings from "./Table/OtherOfferings";
+import MoneyModal from "./MoneyModal/MoneyModal";
+import OtherOfferingsModal from "./OtherModal/OtherOfferingsModal";
 
 // modal component
 

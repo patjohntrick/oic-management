@@ -1,11 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { UserContext } from "../../../context/UserContext";
+import { UserContext } from "../../../../context/UserContext";
 // import { BaseUri } from "../../../context/BaseUri";
 // import { UserContext } from "../../../context/UserContext";
 
-const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
+const DonateOtherMemberModal = ({ handleMoneyModal }) => {
   // const baseUri = useContext(BaseUri);
   const router = useRouter();
   const userList = useContext(UserContext);
@@ -36,27 +36,14 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
     container: " mb-4",
     headerText: "font-medium text-xl mb-2",
     modalContainer:
-      "modalContainer bg-white rounded w-[400px] py-2 px-4 border-t-2 border-purple-800 absolute top-[60px] left-[50%] translate-x-[-50%]",
+      "modalContainer bg-white rounded w-[400px] py-2 px-4 border-t-2 border-purple-800 absolute top-[60px] left-[50%] translate-x-[-50%] z-30",
     input:
       "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded w-full capitalize",
     form: "space-y-4",
     label: "font-medium text-md",
-    labelSpan: "text-purple-700",
+    labelSpan: "text-purple-800 text-xs font-medium italic",
     inputContainer: "grid grid-cols-2 gap-2",
   };
-
-  // select user
-  const fieldTest = () => {
-    userSorted.map((user) => {
-      if (user.name.includes(name)) {
-        setNumber(user.number);
-        setResidence(user.residence);
-      }
-    });
-  };
-  useEffect(() => {
-    fieldTest();
-  }, [name]);
 
   return (
     <div className={style.modalContainer}>
@@ -72,61 +59,49 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
         <form action="" className={style.form}>
           <div>
             <label htmlFor="name">
-              Name <span>*</span>
+              Name <span className={style.labelSpan}>{`(optional)`}</span>
             </label>
-            <select
-              name="name"
-              id="name"
-              className={style.input}
-              value={name}
-              required
-              onChange={(e) => setName(e.target.value)}
-            >
-              <option value="" disabled>
-                Select name
-              </option>
-              {userSorted.map((user) => {
-                return (
-                  <option
-                    value={user.name}
-                    className="capitalize py-4 "
-                    key={user._id}
-                  >
-                    {user.name}
-                  </option>
-                );
-              })}
-            </select>
+            <div className="relative mt-1">
+              <input
+                type="text"
+                name="name"
+                id="name"
+                required
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={style.input}
+              />
+            </div>
           </div>
           <div>
-            <label htmlFor="number">Mobile no.</label>
+            <label htmlFor="number">
+              Mobile no. <span className={style.labelSpan}>{`(optional)`}</span>
+            </label>
 
             <input
               type="number"
               required
               className={style.input}
               value={number}
-              placeholder="Member's mobile number"
-              disabled
               onChange={(e) => setNumber(e.target.value)}
             />
           </div>
 
           <div>
-            <label htmlFor="residence">Residence</label>
+            <label htmlFor="residence">
+              Residence <span className={style.labelSpan}>{`(optional)`}</span>
+            </label>
             <input
               type="text"
               required
               value={residence}
-              disabled
-              placeholder="Member's residence"
               onChange={(e) => setResidence(e.target.value)}
               className={style.input}
             />
           </div>
           <div>
             <label htmlFor="amount">
-              Amount <span>*</span>
+              Amount <span className="text-sm text-purple-800">*</span>
             </label>
             <div className="relative mt-1">
               <input
@@ -159,4 +134,4 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
   );
 };
 
-export default DonateMoneyMemberModal;
+export default DonateOtherMemberModal;
