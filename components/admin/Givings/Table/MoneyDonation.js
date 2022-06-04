@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { BaseUri, UserContext } from "../../../../context/UserContext";
 
 const MoneyDonation = () => {
+  // donation data
+  const { moneyDonation } = useContext(UserContext);
   const style = {
     tableHeader:
       "grid grid-cols-5 capitalize text-heading font-medium mb-2 bg-purple-50 p-4 rounded",
@@ -15,114 +18,22 @@ const MoneyDonation = () => {
         <p>amount</p>
         <p>date</p>
       </header>
-
-      <div className={style.tableContent}>
-        <p>John Patrick Resurreccion</p>
-        <p>09566723445</p>
-        <p>Catanauan</p>
-        <p>P100.00</p>
-        <p>Mar 01 2000</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>Cristina Go...</p>
-        <p>09566723445</p>
-        <p>Mulanay</p>
-        <p>P450.00</p>
-        <p>Aug 31 1999</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>John Patrick Resurreccion</p>
-        <p>09566723445</p>
-        <p>Catanauan</p>
-        <p>P100.00</p>
-        <p>Mar 01 2000</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>Cristina Go...</p>
-        <p>09566723445</p>
-        <p>Mulanay</p>
-        <p>P450.00</p>
-        <p>Aug 31 1999</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>John Patrick Resurreccion</p>
-        <p>09566723445</p>
-        <p>Catanauan</p>
-        <p>P100.00</p>
-        <p>Mar 01 2000</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>Cristina Go...</p>
-        <p>09566723445</p>
-        <p>Mulanay</p>
-        <p>P450.00</p>
-        <p>Aug 31 1999</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>John Patrick Resurreccion</p>
-        <p>09566723445</p>
-        <p>Catanauan</p>
-        <p>P100.00</p>
-        <p>Mar 01 2000</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>Cristina Go...</p>
-        <p>09566723445</p>
-        <p>Mulanay</p>
-        <p>P450.00</p>
-        <p>Aug 31 1999</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>John Patrick Resurreccion</p>
-        <p>09566723445</p>
-        <p>Catanauan</p>
-        <p>P100.00</p>
-        <p>Mar 01 2000</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>Cristina Go...</p>
-        <p>09566723445</p>
-        <p>Mulanay</p>
-        <p>P450.00</p>
-        <p>Aug 31 1999</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>John Patrick Resurreccion</p>
-        <p>09566723445</p>
-        <p>Catanauan</p>
-        <p>P100.00</p>
-        <p>Mar 01 2000</p>
-      </div>
-      <hr />
-
-      <div className={style.tableContent}>
-        <p>Cristina Go...</p>
-        <p>09566723445</p>
-        <p>Mulanay</p>
-        <p>P450.00</p>
-        <p>Aug 31 1999</p>
-      </div>
-      <hr />
+      {moneyDonation
+        .map((donation) => {
+          return (
+            <React.Fragment key={donation._id}>
+              <div className={style.tableContent}>
+                <p>{donation.name}</p>
+                <p>{donation.number}</p>
+                <p>{donation.residence}</p>
+                <p>{`P${donation.amount}.00`}</p>
+                <p>{`${donation.createdAt.slice(3, 14)}`}</p>
+              </div>
+              <hr />
+            </React.Fragment>
+          );
+        })
+        .reverse()}
     </>
   );
 };

@@ -2,7 +2,24 @@ import React from "react";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
 
-const Event = () => {
+// test purpose
+const baseUri = "http://localhost:5000";
+
+export const getStaticProps = async () => {
+  const [res, res2] = await Promise.all([
+    fetch(`${baseUri}/user`),
+    fetch(`${baseUri}/donation/money`),
+  ]);
+  const data = await res.json();
+  const data2 = await res2.json();
+  return {
+    props: { users: data, donations: data2 },
+  };
+};
+
+const Event = ({ users, donations }) => {
+  console.log(users);
+  console.log(donations);
   const style = {
     body: "h-screen relative",
     aside: "fixed w-[20%] z-20",

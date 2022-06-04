@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BiDonateHeart } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiAliensFill, RiCoinsLine } from "react-icons/ri";
@@ -8,6 +8,7 @@ import MoneyDonation from "./Table/MoneyDonation";
 import OtherOfferings from "./Table/OtherOfferings";
 import MoneyModal from "./MoneyModal/MoneyModal";
 import OtherOfferingsModal from "./OtherModal/OtherOfferingsModal";
+import { UserContext } from "../../../context/UserContext";
 
 // modal component
 
@@ -18,6 +19,17 @@ const FirstSection = () => {
   const [subBtn, setSubBtn] = useState(false);
   const [moneyModal, setMoneyModal] = useState(false);
   const [otherOfferingsModal, setOtherOfferingsModal] = useState(false);
+  const [total, setTotal] = useState(0);
+
+  // Donation data
+  const { moneyDonation } = useContext(UserContext);
+
+  const MoneyDonationList = moneyDonation
+    .map((item) => item.amount)
+    .reduce((a, b) => a + b, 0);
+  // console.log(MoneyDonationList);
+
+  // console.log(totalMoneyDonation);
 
   // type of donation
   const handleMoneyDonation = () => {
@@ -26,7 +38,7 @@ const FirstSection = () => {
   const handleOtherOfferings = () => {
     setTypeDonation(true);
   };
-  console.log(typeDonation);
+  // console.log(typeDonation);
 
   // subBtn
   const handleSubBtn = () => {
@@ -81,13 +93,13 @@ const FirstSection = () => {
           <header className={style.header}>
             <header className={style.headerTitle}>
               <p className={style.totalGivings} onClick={handleMoneyDonation}>
-                Total Givings: 69
+                {`Total Givings: ₱${MoneyDonationList}.00`}
               </p>
               <p
                 className={style.totalOfferings}
                 onClick={handleOtherOfferings}
               >
-                Other Offerings : 12
+                {`Other Offerings: ${moneyDonation.length} `}
               </p>
             </header>
             <div className="btn-container relative">

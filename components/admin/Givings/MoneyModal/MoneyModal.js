@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { BiDonateHeart } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
 import { RiAliensFill } from "react-icons/ri";
@@ -44,6 +44,7 @@ const MoneyModal = ({ handleMoneyModal }) => {
       {donateGuest ? (
         <DonateOtherMemberModal handleMoneyModal={handleMoneyModal} />
       ) : null}
+
       <div className={style.modalContainer}>
         <nav className={style.nav}>
           <div className="module">Givings/Tithes | Donate</div>

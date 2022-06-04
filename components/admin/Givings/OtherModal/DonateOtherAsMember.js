@@ -5,12 +5,12 @@ import { UserContext } from "../../../../context/UserContext";
 // import { BaseUri } from "../../../context/BaseUri";
 // import { UserContext } from "../../../context/UserContext";
 
-const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
+const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
   // const baseUri = useContext(BaseUri);
   const router = useRouter();
-  const userList = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
-  const userSorted = userList.sort((a, b) => (a.name > b.name ? 1 : -1));
+  const userSorted = user.sort((a, b) => (a.name > b.name ? 1 : -1));
   // console.log(userSorted);
   // console.log(userList);
 
@@ -41,9 +41,22 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
       "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded w-full capitalize",
     form: "space-y-4",
     label: "font-medium text-md",
-    labelSpan: "text-purple-800 text-xs font-medium italic",
+    labelSpan: "text-purple-800 text-xs italic font-medium",
     inputContainer: "grid grid-cols-2 gap-2",
   };
+
+  // select user
+  const fieldTest = () => {
+    userSorted.map((user) => {
+      if (user.name.includes(name)) {
+        setNumber(user.number);
+        setResidence(user.residence);
+      }
+    });
+  };
+  useEffect(() => {
+    fieldTest();
+  }, [name]);
 
   return (
     <div className={style.modalContainer}>
@@ -59,23 +72,35 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
         <form action="" className={style.form}>
           <div>
             <label htmlFor="name">
-              Name <span className={style.labelSpan}>{`(optional)`}</span>
+              Name <span className="text-sm text-purple-800">*</span>
             </label>
-            <div className="relative mt-1">
-              <input
-                type="text"
-                name="name"
-                id="name"
-                required
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className={style.input}
-              />
-            </div>
+            <select
+              name="name"
+              id="name"
+              className={style.input}
+              value={name}
+              required
+              onChange={(e) => setName(e.target.value)}
+            >
+              <option value="" disabled>
+                Select name
+              </option>
+              {userSorted.map((user) => {
+                return (
+                  <option
+                    value={user.name}
+                    className="capitalize py-4 "
+                    key={user._id}
+                  >
+                    {user.name}
+                  </option>
+                );
+              })}
+            </select>
           </div>
           <div>
             <label htmlFor="number">
-              Mobile no. <span className={style.labelSpan}>{`(optional)`}</span>
+              Mobile no. <span className={style.labelSpan}>{`(autofill)`}</span>
             </label>
 
             <input
@@ -83,18 +108,22 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
               required
               className={style.input}
               value={number}
+              placeholder="Member's mobile number"
+              disabled
               onChange={(e) => setNumber(e.target.value)}
             />
           </div>
 
           <div>
             <label htmlFor="residence">
-              Residence <span className={style.labelSpan}>{`(optional)`}</span>
+              Residence <span className={style.labelSpan}>{`(autofill)`}</span>
             </label>
             <input
               type="text"
               required
               value={residence}
+              disabled
+              placeholder="Member's residence"
               onChange={(e) => setResidence(e.target.value)}
               className={style.input}
             />
@@ -128,4 +157,4 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
   );
 };
 
-export default DonateOtherAsGuest;
+export default DonateOtherAsMember;

@@ -1,33 +1,27 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { UserContext } from "../../../../context/UserContext";
+import { UserContext, BaseUri } from "../../../../context/UserContext";
 // import { BaseUri } from "../../../context/BaseUri";
 // import { UserContext } from "../../../context/UserContext";
 
 const DonateOtherMemberModal = ({ handleMoneyModal }) => {
   // const baseUri = useContext(BaseUri);
   const router = useRouter();
-  const userList = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
-  const userSorted = userList.sort((a, b) => (a.name > b.name ? 1 : -1));
+  // baseUri
+  const baseUri = useContext(BaseUri);
+
+  const userSorted = user.sort((a, b) => (a.name > b.name ? 1 : -1));
   // console.log(userSorted);
   // console.log(userList);
 
   const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
   const [number, setNumber] = useState("");
   const [residence, setResidence] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [email, setEmail] = useState("");
-  const [ministry, setMinistry] = useState("");
-  const [password, setPassword] = useState("");
   const [amount, setAmount] = useState("");
 
-  const [emailError, setEmailError] = useState({
-    message: "",
-    status: false,
-  });
   const style = {
     section:
       "absolute top-0 left-0 bg-black/80 p-2 text-heading  z-10 w-full h-full",
@@ -45,6 +39,28 @@ const DonateOtherMemberModal = ({ handleMoneyModal }) => {
     inputContainer: "grid grid-cols-2 gap-2",
   };
 
+  // Submit
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    const newDonation = {
+      name: name.length > 0 ? name : "unknown",
+      amount,
+      number: number.length > 0 ? number : "unknown",
+      residence: residence.length > 0 ? residence : "unknown",
+    };
+    const res = await fetch(`${baseUri}/donation/money/post`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newDonation),
+    });
+    const data = await res.json();
+    console.log(res);
+
+    console.log(newDonation);
+  };
+
   return (
     <div className={style.modalContainer}>
       <nav className={style.nav}>
@@ -56,7 +72,7 @@ const DonateOtherMemberModal = ({ handleMoneyModal }) => {
         </div>
       </nav>
       <div className={style.container}>
-        <form action="" className={style.form}>
+        <form action="" className={style.form} onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">
               Name <span className={style.labelSpan}>{`(optional)`}</span>
@@ -66,7 +82,6 @@ const DonateOtherMemberModal = ({ handleMoneyModal }) => {
                 type="text"
                 name="name"
                 id="name"
-                required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className={style.input}
@@ -80,7 +95,7 @@ const DonateOtherMemberModal = ({ handleMoneyModal }) => {
 
             <input
               type="number"
-              required
+              name="number"
               className={style.input}
               value={number}
               onChange={(e) => setNumber(e.target.value)}
@@ -93,7 +108,7 @@ const DonateOtherMemberModal = ({ handleMoneyModal }) => {
             </label>
             <input
               type="text"
-              required
+              name="residence"
               value={residence}
               onChange={(e) => setResidence(e.target.value)}
               className={style.input}
