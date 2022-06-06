@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import FirstSection from "./FirstSection";
 import Header from "./Header";
+import ActivityTable from "./Table/ActivityTable";
 
 const Content = () => {
   const [search, setSearch] = useState("");
@@ -15,7 +16,8 @@ const Content = () => {
         setSearch={setSearch}
         handleSearch={handleSearch}
       />
-      <FirstSection search={search} />
+      <ActivityTable />
+      {/* <FirstSection search={search} /> */}
     </div>
   );
 };

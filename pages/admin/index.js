@@ -1,5 +1,11 @@
 import axios from "axios";
-import React, { useContext, useEffect, useRef } from "react";
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import Cards from "../../components/admin/Dashboard/Cards";
 import Content from "../../components/admin/Dashboard/Content";
 import DashboardSecondSection from "../../components/admin/Dashboard/DashboardSecondSection";
@@ -16,7 +22,13 @@ export const getStaticProps = async () => {
   };
 };
 
+// local context
+export const DashboardContext = createContext();
+
+// maint component
 const Dashboard = ({ dashboadUserList }) => {
+  // state
+  const [userList, setUserList] = useState([]);
   // Camera
   // const videoRef = useRef(null);
   // const getUserCamera = () => {
@@ -44,6 +56,16 @@ const Dashboard = ({ dashboadUserList }) => {
     cardWrapper: "flex",
     dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
   };
+
+  const fetchDashboardData = async () => {
+    const response = await fetch(`${baseUri}/user`);
+    const data = await response.json();
+    setUserList(data);
+    // console.log(data);
+  };
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
   return (
     <section className={style.body}>
       {/* <header className={style.header}>
@@ -58,9 +80,9 @@ const Dashboard = ({ dashboadUserList }) => {
         <header className={style.dashboardText}>Dashboard</header>
         {/* <video ref={videoRef} className="w-[100px] h-[100px] border-2" /> */}
         <div className="">
-          <UserContext.Provider value={dashboadUserList}>
+          <DashboardContext.Provider value={dashboadUserList}>
             <Content />
-          </UserContext.Provider>
+          </DashboardContext.Provider>
         </div>
       </div>
     </section>

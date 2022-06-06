@@ -3,9 +3,10 @@ import Link from "next/link";
 import { MdDashboard } from "react-icons/md";
 import { CgDetailsMore } from "react-icons/cg";
 import { BiDonateHeart } from "react-icons/bi";
-import { SiFiles } from "react-icons/si";
-import { AiFillSliders } from "react-icons/ai";
+// import { SiFiles } from "react-icons/si";
+// import { AiFillSliders } from "react-icons/ai";
 import { BsFillStickiesFill } from "react-icons/bs";
+import { FiActivity } from "react-icons/fi";
 
 const Navigation = () => {
   // Style
@@ -67,13 +68,13 @@ const Navigation = () => {
 
           <li className={style.listItem}>
             <div className={style.list}>
-              <Link href="/admin/event">
+              <Link href="/admin/activity">
                 <a className={style.anchor}>
                   {" "}
                   <span>
-                    <SiFiles />
+                    <FiActivity />
                   </span>{" "}
-                  Event Manager
+                  Activities
                 </a>
               </Link>
             </div>

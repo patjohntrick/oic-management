@@ -19,12 +19,16 @@ const FirstSection = () => {
   const [subBtn, setSubBtn] = useState(false);
   const [moneyModal, setMoneyModal] = useState(false);
   const [otherOfferingsModal, setOtherOfferingsModal] = useState(false);
-  const [total, setTotal] = useState(0);
+  const [total, setTotal] = useState();
 
   // Donation data
-  const { moneyDonation } = useContext(UserContext);
+  const { moneyDonations, otherDonations } = useContext(UserContext);
 
-  const MoneyDonationList = moneyDonation
+  // const otherDonationList = otherDonation
+  //   .map((item) => item.amount)
+  //   .reduce((a, b) => a + b, 0);
+
+  const MoneyDonationList = moneyDonations
     .map((item) => item.amount)
     .reduce((a, b) => a + b, 0);
   // console.log(MoneyDonationList);
@@ -99,7 +103,7 @@ const FirstSection = () => {
                 className={style.totalOfferings}
                 onClick={handleOtherOfferings}
               >
-                {`Other Offerings: ${moneyDonation.length} `}
+                {`Other Offerings: ${otherDonations.length} `}
               </p>
             </header>
             <div className="btn-container relative">

@@ -1,12 +1,11 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { UserContext } from "../../../../context/UserContext";
+import { UserContext, BaseUri } from "../../../../context/UserContext";
 // import { BaseUri } from "../../../context/BaseUri";
-// import { UserContext } from "../../../context/UserContext";
 
 const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
-  // const baseUri = useContext(BaseUri);
+  const baseUri = useContext(BaseUri);
   const router = useRouter();
   const { user } = useContext(UserContext);
 
@@ -15,14 +14,9 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
   // console.log(userList);
 
   const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
   const [number, setNumber] = useState("");
   const [residence, setResidence] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [email, setEmail] = useState("");
-  const [ministry, setMinistry] = useState("");
-  const [password, setPassword] = useState("");
-  const [amount, setAmount] = useState("");
+  const [offer, setOffer] = useState("");
 
   const [emailError, setEmailError] = useState({
     message: "",
@@ -58,6 +52,26 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
     fieldTest();
   }, [name]);
 
+  // Submit
+  const handleSubmit = async (e) => {
+    // e.preventDefault();
+    const data = {
+      name,
+      number,
+      residence,
+      offer,
+    };
+    const res = await fetch(`${baseUri}/donation/other/post`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    console.log(res);
+    // console.log(data);
+  };
+
   return (
     <div className={style.modalContainer}>
       <nav className={style.nav}>
@@ -69,7 +83,7 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
         </div>
       </nav>
       <div className={style.container}>
-        <form action="" className={style.form}>
+        <form action="" className={style.form} onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">
               Name <span className="text-sm text-purple-800">*</span>
@@ -136,8 +150,8 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
               <input
                 type="text"
                 required
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                value={offer}
+                onChange={(e) => setOffer(e.target.value)}
                 className={`${style.input}`}
               />
             </div>

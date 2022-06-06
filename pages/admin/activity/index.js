@@ -1,25 +1,27 @@
-import React from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
+import Content from "../../../components/admin/Activity/Content";
+import { BaseUri } from "../../../context/UserContext";
 
-// test purpose
+// baseUri
 const baseUri = "http://localhost:5000";
 
 export const getStaticProps = async () => {
-  const [res, res2] = await Promise.all([
-    fetch(`${baseUri}/user`),
-    fetch(`${baseUri}/donation/money`),
-  ]);
-  const data = await res.json();
-  const data2 = await res2.json();
+  const response = await fetch(`${baseUri}/activity`);
+  const data = await response.json();
+
   return {
-    props: { users: data, donations: data2 },
+    props: { activityList: data },
   };
 };
 
-const Event = ({ users, donations }) => {
-  console.log(users);
-  console.log(donations);
+// local context
+export const EventApi = createContext();
+
+const Event = ({ activityList }) => {
+  // state
+  const [eventList, setEventList] = useState([]);
   const style = {
     body: "h-screen relative",
     aside: "fixed w-[20%] z-20",
@@ -29,6 +31,19 @@ const Event = ({ users, donations }) => {
     cardWrapper: "flex",
     dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
   };
+
+  // basuUri
+  // const baseUri = useContext(BaseUri);
+
+  // fetchList
+  // const fetchList = async () => {
+  //   const res = await fetch(`${baseUri}/event`);
+  //   const data = await res.json();
+  //   setEventList(data);
+  // };
+  // useEffect(() => {
+  //   fetchList();
+  // }, []);
   return (
     <section className={style.body}>
       {/* <header className={style.header}>
@@ -40,13 +55,18 @@ const Event = ({ users, donations }) => {
       </aside> */}
 
       <div className={`${style.cardContainer} container`}>
-        <header className={style.dashboardText}>Event Manager</header>
+        <header className={style.dashboardText}>Activities</header>
         {/* <div className="">
            <Cards />
          </div>
          <div>
            <DashboardSecondSection />
          </div> */}
+        <EventApi.Provider value={{ activityList }}>
+          <div className="">
+            <Content />
+          </div>
+        </EventApi.Provider>
       </div>
     </section>
   );

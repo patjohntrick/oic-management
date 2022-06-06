@@ -6,7 +6,7 @@ import { IoMdTrash } from "react-icons/io";
 const FirstSection = ({ search }) => {
   const baseUri = "http://localhost:5000";
   const users = useContext(UserContext);
-  console.log(users);
+  // console.log(users);
   const style = {
     container: " text-heading grid grid-cols-4 gap-4 text-center",
     box: "box bg-white rounded shadow hover:shadow-lg pt-4 pb-5 px-4 w-[250px]",

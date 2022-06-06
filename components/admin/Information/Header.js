@@ -1,10 +1,8 @@
 import React, { useContext, useState } from "react";
-import { RiAliensFill } from "react-icons/ri";
+
 import { AiOutlineClose } from "react-icons/ai";
-import { FaUserCheck } from "react-icons/fa";
+
 import { BaseUri } from "../../../context/UserContext";
-import axios from "axios";
-import { data } from "autoprefixer";
 
 // modal component
 const Modal = ({ handleModal }) => {

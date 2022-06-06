@@ -1,12 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
-import { UserContext } from "../../../../context/UserContext";
+import { UserContext, BaseUri } from "../../../../context/UserContext";
 // import { BaseUri } from "../../../context/BaseUri";
 // import { UserContext } from "../../../context/UserContext";
 
 const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
-  // const baseUri = useContext(BaseUri);
+  const baseUri = useContext(BaseUri);
   const router = useRouter();
   const { user } = useContext(UserContext);
 
@@ -15,19 +15,10 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
   // console.log(userList);
 
   const [name, setName] = useState("");
-  const [gender, setGender] = useState("");
   const [number, setNumber] = useState("");
   const [residence, setResidence] = useState("");
-  const [birthday, setBirthday] = useState("");
-  const [email, setEmail] = useState("");
-  const [ministry, setMinistry] = useState("");
-  const [password, setPassword] = useState("");
-  const [amount, setAmount] = useState("");
+  const [offer, setOffer] = useState("");
 
-  const [emailError, setEmailError] = useState({
-    message: "",
-    status: false,
-  });
   const style = {
     section:
       "absolute top-0 left-0 bg-black/80 p-2 text-heading  z-10 w-full h-full",
@@ -45,6 +36,26 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
     inputContainer: "grid grid-cols-2 gap-2",
   };
 
+  // SUBMIT FORM
+  const handleSubmit = async (e) => {
+    // e.preventDefault()
+    const data = {
+      name: name.length > 0 ? name : "unknown",
+      number: number.length > 0 ? number : "unknown",
+      residence: residence.length > 0 ? residence : "unknown",
+      offer,
+    };
+
+    const res = await fetch(`${baseUri}/donation/other/post`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    console.log(res);
+  };
+
   return (
     <div className={style.modalContainer}>
       <nav className={style.nav}>
@@ -56,7 +67,7 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
         </div>
       </nav>
       <div className={style.container}>
-        <form action="" className={style.form}>
+        <form action="" className={style.form} onSubmit={handleSubmit}>
           <div>
             <label htmlFor="name">
               Name <span className={style.labelSpan}>{`(optional)`}</span>
@@ -66,7 +77,6 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
                 type="text"
                 name="name"
                 id="name"
-                required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className={style.input}
@@ -80,7 +90,7 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
 
             <input
               type="number"
-              required
+              name="number"
               className={style.input}
               value={number}
               onChange={(e) => setNumber(e.target.value)}
@@ -93,7 +103,7 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
             </label>
             <input
               type="text"
-              required
+              name="residence"
               value={residence}
               onChange={(e) => setResidence(e.target.value)}
               className={style.input}
@@ -107,8 +117,8 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
               <input
                 type="text"
                 required
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
+                value={offer}
+                onChange={(e) => setOffer(e.target.value)}
                 className={`${style.input}`}
               />
             </div>

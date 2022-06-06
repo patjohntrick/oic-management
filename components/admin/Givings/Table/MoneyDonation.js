@@ -1,9 +1,10 @@
 import React, { useContext } from "react";
 import { BaseUri, UserContext } from "../../../../context/UserContext";
+import { AiFillCheckCircle, AiFillEdit, AiFillDelete } from "react-icons/ai";
 
 const MoneyDonation = () => {
   // donation data
-  const { moneyDonation } = useContext(UserContext);
+  const { moneyDonations } = useContext(UserContext);
   const style = {
     tableHeader:
       "grid grid-cols-5 capitalize text-heading font-medium mb-2 bg-purple-50 p-4 rounded",
@@ -18,7 +19,7 @@ const MoneyDonation = () => {
         <p>amount</p>
         <p>date</p>
       </header>
-      {moneyDonation
+      {moneyDonations
         .map((donation) => {
           return (
             <React.Fragment key={donation._id}>
@@ -27,7 +28,7 @@ const MoneyDonation = () => {
                 <p>{donation.number}</p>
                 <p>{donation.residence}</p>
                 <p>{`P${donation.amount}.00`}</p>
-                <p>{`${donation.createdAt.slice(3, 14)}`}</p>
+                <p>{`${donation.createdAt.slice(3, 15)}`}</p>
               </div>
               <hr />
             </React.Fragment>
