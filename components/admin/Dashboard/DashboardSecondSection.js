@@ -3,7 +3,7 @@ import { UserContext } from "../../../context/UserContext";
 import { DashboardContext } from "../../../pages/admin";
 
 const DashboardSecondSection = () => {
-  const dashboardUserList = useContext(DashboardContext);
+  const { user } = useContext(DashboardContext);
 
   // const dashboardUserStart = dashboardUserList.length - 5;
   // const dashboardUserFormatted = dashboardUserList.slice(
@@ -36,7 +36,7 @@ const DashboardSecondSection = () => {
             <p>mobile no.</p>
           </header>
 
-          {dashboardUserList
+          {user
             .map((user) => {
               return (
                 <div className={style.tableContent} key={user._id}>

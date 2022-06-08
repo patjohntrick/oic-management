@@ -38,7 +38,8 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
 
   // SUBMIT FORM
   const handleSubmit = async (e) => {
-    // e.preventDefault()
+    // e.preventDefault();
+    console.log(e);
     const data = {
       name: name.length > 0 ? name : "unknown",
       number: number.length > 0 ? number : "unknown",

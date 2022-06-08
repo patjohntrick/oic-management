@@ -1,24 +1,22 @@
-import axios from "axios";
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import Cards from "../../components/admin/Dashboard/Cards";
+import React, { createContext } from "react";
 import Content from "../../components/admin/Dashboard/Content";
-import DashboardSecondSection from "../../components/admin/Dashboard/DashboardSecondSection";
-import Navigation from "../../components/admin/Navigation";
-import Sidebar from "../../components/admin/Sidebar";
-import { UserContext } from "../../context/UserContext";
 
 const baseUri = "http://localhost:5000";
 export const getStaticProps = async () => {
-  const res = await axios.get(`${baseUri}/user/dashboard`);
-  const data = await res.data;
+  const [userResponse, moneyResponse, otherResponse, activitiesResponse] =
+    await Promise.all([
+      fetch(`${baseUri}/user`),
+      fetch(`${baseUri}/donation/money`),
+      fetch(`${baseUri}/donation/other`),
+      fetch(`${baseUri}/activity`),
+    ]);
+  const user = await userResponse.json();
+  const money = await moneyResponse.json();
+  const other = await otherResponse.json();
+  const activities = await activitiesResponse.json();
+
   return {
-    props: { dashboadUserList: data },
+    props: { user, money, other, activities },
   };
 };
 
@@ -26,9 +24,7 @@ export const getStaticProps = async () => {
 export const DashboardContext = createContext();
 
 // maint component
-const Dashboard = ({ dashboadUserList }) => {
-  // state
-  const [userList, setUserList] = useState([]);
+const Dashboard = ({ user, money, other, activities }) => {
   // Camera
   // const videoRef = useRef(null);
   // const getUserCamera = () => {
@@ -47,6 +43,8 @@ const Dashboard = ({ dashboadUserList }) => {
   //   getUserCamera();
   // }, [videoRef]);
   // Style
+
+  // style
   const style = {
     body: "h-screen relative",
     aside: "fixed w-[20%] z-20",
@@ -57,30 +55,13 @@ const Dashboard = ({ dashboadUserList }) => {
     dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
   };
 
-  const fetchDashboardData = async () => {
-    const response = await fetch(`${baseUri}/user`);
-    const data = await response.json();
-    setUserList(data);
-    // console.log(data);
-  };
-  useEffect(() => {
-    fetchDashboardData();
-  }, []);
   return (
     <section className={style.body}>
-      {/* <header className={style.header}>
-        <Navigation />
-      </header>
-      
-      <aside className={style.aside}>
-        <Sidebar />
-      </aside> */}
-      {/* content */}
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Dashboard</header>
         {/* <video ref={videoRef} className="w-[100px] h-[100px] border-2" /> */}
         <div className="">
-          <DashboardContext.Provider value={dashboadUserList}>
+          <DashboardContext.Provider value={{ user, money, other, activities }}>
             <Content />
           </DashboardContext.Provider>
         </div>

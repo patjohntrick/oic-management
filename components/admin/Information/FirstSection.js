@@ -46,7 +46,7 @@ const FirstSection = ({ search }) => {
                 className="grid place-items-end cursor-pointer"
                 onClick={() => handleDelete(user._id)}
               >
-                <p className="text-xl text-red-600 p-2 rounded-full hover:bg-red-100 transition-all">
+                <p className="text-xl text-red-700 p-2 rounded-full hover:bg-red-100 transition-all bg-red-50  ">
                   <IoMdTrash />
                 </p>
               </div>

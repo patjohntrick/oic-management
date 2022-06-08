@@ -26,9 +26,21 @@ const OtherOfferings = () => {
           return (
             <React.Fragment key={donation._id}>
               <div className={style.tableContent}>
-                <p>{donation.name}</p>
-                <p>{donation.number}</p>
-                <p>{donation.residence} </p>
+                <p>
+                  {donation.name.length > 15
+                    ? `${donation.name.slice(0, 15)}...`
+                    : donation.name}
+                </p>
+                <p>
+                  {donation.number.length > 13
+                    ? `${donation.number.slice(0, 13)}...`
+                    : donation.number}
+                </p>
+                <p>
+                  {donation.residence.length > 15
+                    ? `${donation.residence.slice(0, 15)}...`
+                    : donation.residence}{" "}
+                </p>
                 <p>{donation.offer}</p>
                 <p>{donation.createdAt.slice(3, 15)}</p>
               </div>

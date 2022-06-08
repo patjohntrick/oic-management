@@ -54,7 +54,8 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
   }, [name]);
 
   // Submit
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (userId) => {
+    console.log(userId);
     // e.preventDefault();
     const newDonation = {
       name,
@@ -71,6 +72,7 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
     });
     const data = await res.json();
     // console.log(newDonation);
+    router.reload();
     console.log(res);
   };
 

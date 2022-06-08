@@ -1,15 +1,16 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { EventApi } from "../../../../pages/admin/activity/index";
-import { AiOutlineCheck, AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { AiOutlineCheck, AiOutlineRedo, AiFillDelete } from "react-icons/ai";
 import { BaseUri } from "../../../../context/UserContext";
 import { useRouter } from "next/router";
 
-const ActivityTable = () => {
-  // baseUri
-  const baseUri = useContext(BaseUri);
+const OccuredActivity = () => {
   //   local context
   const { activityList } = useContext(EventApi);
   //   console.log(activityList);
+
+  //baseUri
+  const baseUri = useContext(BaseUri);
 
   // router
   const router = useRouter();
@@ -29,13 +30,13 @@ const ActivityTable = () => {
     router.reload();
     console.log(response);
   };
+
   // done event
   const handleDone = async (userId) => {
     const response = await fetch(`${baseUri}/activity/done/${userId}`);
     router.reload();
     console.log(response);
   };
-
   return (
     <>
       <header className={style.tableHeader}>
@@ -50,7 +51,7 @@ const ActivityTable = () => {
       </header>
       {activityList
         .map((data) => {
-          if (data.done == false) {
+          if (data.done) {
             return (
               <React.Fragment key={data._id}>
                 <div className={style.tableContent}>
@@ -66,17 +67,15 @@ const ActivityTable = () => {
                   </p>
                   <p>{data.time}</p>
                   <p>{data.date}</p>
-                  <p>{data.attendee}</p>
+                  <p>Music Department</p>
                   <div className="flex gap-2 items-center ">
                     <div
                       className="grid place-items-center rounded-full p-2 bg-purple-50 text-purple-700 hover:bg-purple-100 cursor-pointer"
                       onClick={() => handleDone(data._id)}
                     >
-                      <AiOutlineCheck />
+                      <AiOutlineRedo />
                     </div>
-                    <div className="grid place-items-center rounded-full p-2 bg-green-50 text-green-700 hover:bg-green-100 cursor-pointer">
-                      <AiFillEdit />
-                    </div>
+
                     <div
                       className="grid place-items-center rounded-full p-2 bg-red-50 text-red-700 hover:bg-red-100 cursor-pointer"
                       onClick={() => handleDelete(data._id)}
@@ -97,4 +96,4 @@ const ActivityTable = () => {
   );
 };
 
-export default ActivityTable;
+export default OccuredActivity;

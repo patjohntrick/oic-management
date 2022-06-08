@@ -54,7 +54,7 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
 
   // Submit
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const data = {
       name,
       number,
@@ -68,7 +68,7 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
       },
       body: JSON.stringify(data),
     });
-    console.log(res);
+    console.log(await res.json());
     // console.log(data);
   };
 
