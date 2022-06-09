@@ -17,7 +17,9 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
   const [residence, setResidence] = useState("");
-  const [amount, setAmount] = useState("");
+  const [amount, setAmount] = useState();
+
+  const [selectedUserId, setSelectedUserId] = useState("");
 
   // baseUri
   const baseUri = useContext(BaseUri);
@@ -46,34 +48,80 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
       if (user.name.includes(name)) {
         setNumber(user.number);
         setResidence(user.residence);
+        setSelectedUserId(user._id);
       }
     });
   };
+  // console.log(selectedUserId);
   useEffect(() => {
     fieldTest();
   }, [name]);
 
   // Submit
-  const handleSubmit = async (userId) => {
-    console.log(userId);
-    // e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const date = new Date();
+    // const monthList = [
+    //   "Jan",
+    //   "Feb",
+    //   "Mar",
+    //   "Apr",
+    //   "May",
+    //   "Jun",
+    //   "Jul",
+    //   "Aug",
+    //   "Sep",
+    //   "Oct",
+    //   "Nov",
+    //   "Dec",
+    // ];
+    // const month = monthList[date.getMonth()];
+    // const day = date.getDate();
+    // const year = date.getFullYear();
     const newDonation = {
       name,
       amount,
       number,
       residence,
+      date: `${date}`,
     };
-    const res = await fetch(`${baseUri}/donation/money/post`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newDonation),
-    });
-    const data = await res.json();
+    const userMoneyDonation = {
+      amount,
+      date: `${date}`,
+    };
+    const [res1, res2] = await Promise.all([
+      fetch(`${baseUri}/donation/money/post`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newDonation),
+      }),
+      fetch(`${baseUri}/user/${selectedUserId}/moneydonation`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newDonation),
+      }),
+    ]);
+    const userDonation = await res1.json();
+    const postDonation = await res2.json();
+    console.log(postDonation);
+    console.log(userDonation);
+
     // console.log(newDonation);
-    router.reload();
-    console.log(res);
+
+    // const res = await fetch(`${baseUri}/donation/money/post`, {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(newDonation),
+    // });
+    // const data = await res.json();
+    // console.log(newDonation);
+    // router.reload();
   };
 
   return (

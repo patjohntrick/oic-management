@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { BaseUri } from "../../../context/UserContext";
 import { useRouter } from "next/router";
+import { ministries } from "../../../ministries/ministriesData";
 
 const Modal = ({ handleModal }) => {
   const [title, setTitle] = useState("");
@@ -33,6 +34,7 @@ const Modal = ({ handleModal }) => {
 
   // submit event
   const handleSubmit = async (e) => {
+    router.reload();
     // e.preventDefault();
     router.reload();
     const newActivities = {
@@ -50,6 +52,10 @@ const Modal = ({ handleModal }) => {
       body: JSON.stringify(newActivities),
     });
   };
+
+  const list = ministries
+    .map((data) => data.ministry)
+    .sort((a, b) => (a > b ? 1 : -1));
 
   return (
     <section className={style.section}>
@@ -94,11 +100,16 @@ const Modal = ({ handleModal }) => {
                   <option value="" disabled selected>
                     Select attendees
                   </option>
-                  <option value="music department">Music Department</option>
-                  <option value="crew">Crew</option>
-                  <option value="donator">Donator</option>
-                  <option value="Ministry">Ministry</option>
-                  <option value="all">all</option>
+                  {list
+                    .map((data, index) => {
+                      return (
+                        <option value={data} key={index}>
+                          {data}
+                        </option>
+                      );
+                    })
+                    .sort((a, b) => (a.ministry > b.ministry ? 1 : -1))}
+                  <option value="All">All</option>
                 </select>
               </div>
             </div>

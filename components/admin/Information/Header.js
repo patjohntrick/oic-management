@@ -3,6 +3,7 @@ import React, { useContext, useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 
 import { BaseUri } from "../../../context/UserContext";
+import { ministries } from "../../../ministries/ministriesData";
 
 // modal component
 const Modal = ({ handleModal }) => {
@@ -63,6 +64,11 @@ const Modal = ({ handleModal }) => {
     label: "font-medium text-md",
     labelSpan: "text-purple-700",
   };
+  // sorted ministries
+  const list = ministries
+    .map((data) => data.ministry)
+    .sort((a, b) => (a > b ? 1 : -1));
+
   return (
     <section className={style.section}>
       <div className={style.modalContainer}>
@@ -177,10 +183,20 @@ const Modal = ({ handleModal }) => {
                   <option value="" disabled selected>
                     Select Ministry
                   </option>
-                  <option value="crew ministry">Crew</option>
+                  {list
+                    .map((data, index) => {
+                      return (
+                        <option value={data} key={index}>
+                          {data}
+                        </option>
+                      );
+                    })
+                    .sort((a, b) => (a.ministry > b.ministry ? 1 : -1))}
+
+                  {/* <option value="crew ministry">Crew</option>
                   <option value="Music Department">Music Department</option>
                   <option value="other">Other</option>
-                  <option value="donatator">donator</option>
+                  <option value="donatator">donator</option> */}
                 </select>
               </div>
             </div>

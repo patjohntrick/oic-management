@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { UserContext, BaseUri } from "../../../../context/UserContext";
+// import {ministries} from '../../../../ministries/ministriesData'
 // import { BaseUri } from "../../../context/BaseUri";
 
 const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
@@ -17,6 +18,8 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
   const [number, setNumber] = useState("");
   const [residence, setResidence] = useState("");
   const [offer, setOffer] = useState("");
+
+  const [selectedUserId, setSelectedUserId] = useState("");
 
   const [emailError, setEmailError] = useState({
     message: "",
@@ -45,6 +48,7 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
       if (user.name.includes(name)) {
         setNumber(user.number);
         setResidence(user.residence);
+        setSelectedUserId(user._id);
       }
     });
   };
@@ -55,21 +59,34 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
   // Submit
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const date = new Date();
     const data = {
       name,
       number,
       residence,
       offer,
+      date: `${date}`,
     };
-    const res = await fetch(`${baseUri}/donation/other/post`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    console.log(await res.json());
+    const [res1, res2] = await Promise.all([
+      fetch(`${baseUri}/donation/other/post`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }),
+      fetch(`${baseUri}/user/${selectedUserId}/otherdonation`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }),
+    ]);
+    const userDonation = await res1.json();
+    const postDonation = await res2.json();
     // console.log(data);
+    router.reload();
   };
 
   return (

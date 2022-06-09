@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { UserContext } from "../../../context/UserContext";
+import { BaseUri, UserContext } from "../../../context/UserContext";
 import Link from "next/link";
 import EditModal from "./EditModal";
 
@@ -30,6 +30,17 @@ const UserId = () => {
       " rounded bg-red-700 hover:bg-red-800 transition-all px-6 uppercase py-3 shadow-md text-white font-medium cursor-pointer ",
     header: " flex justify-between items-center ",
   };
+
+  // donation
+  // const baseUri = useContext(BaseUri);
+  // const [donation, setDonation] = useState([]);
+  // const fetchDonation = async () => {
+  //   const response = await fetch(`${baseUri}/${data._id}`)
+  // };
+
+  // total money donation
+  const total = data.moneydonation.map((data) => data.amount);
+  console.log(total);
   return (
     <>
       {editUser ? (
@@ -111,7 +122,7 @@ const UserId = () => {
                 </p>
               </div>
               <div className="second-row">
-                <p className={style.pInfo}>
+                {/* <p className={style.pInfo}>
                   <span className={style.spanTitle}>
                     Birthday <br />
                   </span>
@@ -128,7 +139,7 @@ const UserId = () => {
                     Mobile no. <br />
                   </span>
                   {data.number}
-                </p>
+                </p> */}
               </div>
             </div>
           </div>
@@ -144,13 +155,19 @@ const UserId = () => {
                     <p>Date</p>
                   </header>
                   <div className="grid grid-cols-2 mb-2 text-heading text-sm">
-                    <p>P400.00</p>
-                    <p>{data.birthday}</p>
+                    {data.moneydonation.map((data) => {
+                      return (
+                        <React.Fragment key={data.uuid}>
+                          <p>{`₱${data.amount}.00`}</p>
+                          <p>{`${data.createdAt.slice(3, 15)}`}</p>
+                        </React.Fragment>
+                      );
+                    })}
                   </div>
                 </div>
                 <div className="total-donation">
-                  <p className=" text-heading">
-                    <span className="font-medium">Total: </span>P435.00
+                  <p className=" text-heading font-medium">
+                    {/* Total: {total.reduce((a, b) => a + b)} */}
                   </p>
                 </div>
               </div>

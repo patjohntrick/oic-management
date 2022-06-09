@@ -32,7 +32,7 @@ const MoneyDonation = () => {
                 <p>
                   {donation.number.length > 13
                     ? `${donation.number.slice(0, 13)}...`
-                    : donation.name}
+                    : donation.number}
                 </p>
                 <p>
                   {donation.residence.length > 15
