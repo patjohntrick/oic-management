@@ -32,7 +32,7 @@ const Navigation = () => {
         </div>
         <div className="user-container">
           <img
-            src="https://avatars.dicebear.com/api/avataaars/admin.svg"
+            src="https://avatars.dicebear.com/api/micah/qwer.svg"
             alt=""
             className=" w-[30px] h-[30px] object-cover rounded-full bg-black/10 "
           />

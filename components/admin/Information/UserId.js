@@ -39,7 +39,7 @@ const UserId = () => {
   // };
 
   // total money donation
-  const total = data.moneydonation.map((data) => data.amount);
+  const total = data.moneydonation.map((data) => parseInt(data.amount));
   console.log(total);
   return (
     <>
@@ -151,8 +151,14 @@ const UserId = () => {
               <div className="dontaion-container">
                 <div className="donation">
                   <header className="grid grid-cols-2 font-medium text-heading">
-                    <p>Amount</p>
-                    <p>Date</p>
+                    {data.moneydonation.length > 0 ? (
+                      <>
+                        <p>Amount</p>
+                        <p>Date</p>
+                      </>
+                    ) : (
+                      `No donation yet`
+                    )}
                   </header>
                   <div className="grid grid-cols-2 mb-2 text-heading text-sm">
                     {data.moneydonation.map((data) => {
@@ -167,7 +173,9 @@ const UserId = () => {
                 </div>
                 <div className="total-donation">
                   <p className=" text-heading font-medium">
-                    {/* Total: {total.reduce((a, b) => a + b)} */}
+                    {data.moneydonation.length > 0
+                      ? `Total: ₱${total.reduce((a, b) => a + b)}.00`
+                      : null}
                   </p>
                 </div>
               </div>
@@ -179,17 +187,31 @@ const UserId = () => {
               <div className="dontaion-container">
                 <div className="donation">
                   <header className="grid grid-cols-2 font-medium text-heading">
-                    <p>Offer</p>
-                    <p>Date</p>
+                    {data.otherdonation.length > 0 ? (
+                      <>
+                        <p>Offer</p>
+                        <p>Date</p>
+                      </>
+                    ) : (
+                      `No donation yet`
+                    )}
                   </header>
                   <div className="grid grid-cols-2 mb-2 text-heading text-sm">
-                    <p>fruits</p>
-                    <p>{data.birthday}</p>
+                    {data.otherdonation.map((data) => {
+                      return (
+                        <React.Fragment key={data.uuid}>
+                          <p className="capitalize">{data.offer}</p>
+                          <p>{`${data.createdAt.slice(3, 15)}`}</p>
+                        </React.Fragment>
+                      );
+                    })}
                   </div>
                 </div>
                 <div className="total-donation">
-                  <p className=" text-heading">
-                    <span className="font-medium">Total givings: </span>1
+                  <p className=" text-heading font-medium">
+                    {data.otherdonation.length > 0
+                      ? `Total givings: ${data.otherdonation.length}`
+                      : null}
                   </p>
                 </div>
               </div>

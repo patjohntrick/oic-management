@@ -18,7 +18,7 @@ const ActivityTable = () => {
     tableHeader:
       "grid grid-cols-6 capitalize text-heading font-medium bg-purple-50 p-4 rounded items-center",
     tableContent:
-      "grid grid-cols-6 capitalize text-heading text-sm px-4 py-4 bg-white items-center",
+      "grid grid-cols-6 capitalize text-heading text-sm px-4 py-4 bg-white items-center gap-1",
   };
 
   // delete event
@@ -55,13 +55,14 @@ const ActivityTable = () => {
               <React.Fragment key={data._id}>
                 <div className={style.tableContent}>
                   <p>
-                    {data.title.length > 15
+                    {/* {data.title.length > 15
                       ? `${data.title.slice(0, 15)}...`
-                      : data.title}
+                      : data.title} */}
+                    {data.title}
                   </p>
                   <p>
-                    {data.description.length > 15
-                      ? `${data.description.slice(0, 15)}...`
+                    {data.description.length > 100
+                      ? `${data.description.slice(0, 80)}...`
                       : data.description}
                   </p>
                   <p>{data.time}</p>

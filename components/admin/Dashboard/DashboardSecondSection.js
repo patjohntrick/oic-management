@@ -20,7 +20,7 @@ const DashboardSecondSection = () => {
     tableHeader:
       "grid grid-cols-6 capitalize text-heading font-medium bg-purple-50 p-4 rounded",
     tableContent:
-      "grid grid-cols-6 capitalize text-heading text-sm px-4 py-5 border-t-0 border-x-0 border-[1px] border-b-black/10",
+      "grid grid-cols-6 items-center capitalize text-heading text-sm px-4 py-5 border-t-0 border-x-0 border-[1px] border-b-black/10",
   };
   return (
     <section className={style.container}>
