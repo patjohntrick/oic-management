@@ -3,6 +3,7 @@ import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
 import Content from "../../../components/admin/Activity/Content";
 import { BaseUri } from "../../../context/UserContext";
+import { useRouter } from "next/router";
 
 // baseUri
 const baseUri = "http://localhost:5000";
@@ -44,6 +45,17 @@ const Event = ({ activityList }) => {
   // useEffect(() => {
   //   fetchList();
   // }, []);
+
+  // router
+  const router = useRouter();
+
+  // localStorage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/");
+    }
+  }, []);
   return (
     <section className={style.body}>
       {/* <header className={style.header}>

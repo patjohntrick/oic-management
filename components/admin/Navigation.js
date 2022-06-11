@@ -1,5 +1,6 @@
 import React from "react";
 import { MdNotificationsNone } from "react-icons/md";
+import { useRouter } from "next/router";
 
 const Navigation = () => {
   // style
@@ -11,6 +12,13 @@ const Navigation = () => {
     user: "flex items-center w-auto w-[60px] justify-between",
     logo: "font-semibold text-black/80 text-xl",
     header: "fixed w-[80%] ml-[20%] z-20",
+  };
+  // router
+  const router = useRouter();
+  // logout
+  const logoutEvent = () => {
+    window.localStorage.clear();
+    router.push("/");
   };
   return (
     <div className={style.container}>
@@ -30,7 +38,7 @@ const Navigation = () => {
         <div className="icon text-xl">
           <MdNotificationsNone />
         </div>
-        <div className="user-container">
+        <div className="user-container cursor-pointer" onClick={logoutEvent}>
           <img
             src="https://avatars.dicebear.com/api/micah/qwer.svg"
             alt=""

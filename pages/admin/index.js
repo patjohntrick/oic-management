@@ -1,4 +1,5 @@
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
+import { useRouter } from "next/router";
 import Content from "../../components/admin/Dashboard/Content";
 
 const baseUri = "http://localhost:5000";
@@ -54,6 +55,17 @@ const Dashboard = ({ user, money, other, activities }) => {
     cardWrapper: "flex",
     dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
   };
+
+  // router
+  const router = useRouter();
+
+  // localStorage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <section className={style.body}>

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Content from "../../../components/admin/Information/Content";
 import FirstSection from "../../../components/admin/Information/FirstSection";
 import Header from "../../../components/admin/Information/Header";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
 import { UserContext } from "../../../context/UserContext";
+import { useRouter } from "next/router";
 
 // URI
 const baseUri = "http://localhost:5000";
@@ -30,6 +31,17 @@ const Information = ({ users }) => {
     cardWrapper: "flex",
     dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
   };
+
+  // router
+  const router = useRouter();
+
+  // localStorage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/");
+    }
+  }, []);
   return (
     <section className={style.body}>
       {/* <header className={style.header}>

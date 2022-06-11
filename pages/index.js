@@ -36,7 +36,7 @@ export default function Home() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const loginAdmin = {
-      name: "admin",
+      name: "admins",
       password,
     };
     const response = await fetch(`${baseUri}/admin/login`, {
@@ -60,7 +60,7 @@ export default function Home() {
     fetchAdmin();
   }, []);
   // console.log(admin);
-  console.log(password);
+  // console.log(password);
 
   return (
     <div className=" relative z-40 bg-[#111827] h-screen grid place-items-center ">

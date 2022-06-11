@@ -3,6 +3,7 @@ import Content from "../../../components/admin/Givings/Content";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
 import { UserContext, BaseUri } from "../../../context/UserContext";
+import { useRouter } from "next/router";
 
 // URI
 const baseUri = "http://localhost:5000";
@@ -70,6 +71,17 @@ const Donation = ({ user, moneyDonations, otherDonations }) => {
   // useEffect(() => {
   //   fetchData();
   // }, []);
+
+  // router
+  const router = useRouter();
+
+  // localStorage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/");
+    }
+  }, []);
 
   return (
     <section className={style.body}>

@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navigation from "../../../components/admin/Navigation";
 import Sidebar from "../../../components/admin/Sidebar";
+import { useRouter } from "next/router";
 
 const File = () => {
   const style = {
@@ -12,6 +13,17 @@ const File = () => {
     cardWrapper: "flex",
     dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
   };
+
+  // router
+  const router = useRouter();
+
+  // localStorage
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.push("/");
+    }
+  }, []);
   return (
     <section className={style.body}>
       {/* <header className={style.header}>
