@@ -55,6 +55,7 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
       body: JSON.stringify(data),
     });
     console.log(res);
+    window.location.reload();
   };
 
   return (

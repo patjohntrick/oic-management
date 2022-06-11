@@ -34,9 +34,7 @@ const Modal = ({ handleModal }) => {
 
   // submit event
   const handleSubmit = async (e) => {
-    router.reload();
     // e.preventDefault();
-    router.reload();
     const newActivities = {
       title,
       attendee,
@@ -51,6 +49,8 @@ const Modal = ({ handleModal }) => {
       },
       body: JSON.stringify(newActivities),
     });
+    console.log(response);
+    window.location.reload();
   };
 
   const list = ministries

@@ -86,7 +86,7 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
     const userDonation = await res1.json();
     const postDonation = await res2.json();
     // console.log(data);
-    router.reload();
+    window.location.reload();
   };
 
   return (

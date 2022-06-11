@@ -59,7 +59,7 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
 
   // Submit
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const date = new Date();
     // const monthList = [
     //   "Jan",
@@ -121,6 +121,8 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
     // });
     // const data = await res.json();
     // console.log(newDonation);
+    // router.reload();
+    window.location.reload();
     // router.reload();
   };
 

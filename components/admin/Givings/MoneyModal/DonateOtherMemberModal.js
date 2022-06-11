@@ -59,7 +59,7 @@ const DonateOtherMemberModal = ({ handleMoneyModal }) => {
     const data = await res.json();
     console.log(res);
     router.reload();
-    console.log(newDonation);
+    // console.log(newDonation);
   };
 
   return (
