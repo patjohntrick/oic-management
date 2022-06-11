@@ -1,10 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { UserContext } from "../../../context/UserContext";
+import { BaseUri, UserContext } from "../../../context/UserContext";
 import Link from "next/link";
 import { IoMdTrash } from "react-icons/io";
 
 const FirstSection = ({ search }) => {
-  const baseUri = "http://localhost:5000";
+  const baseUri = useContext(BaseUri);
   const users = useContext(UserContext);
   // console.log(users);
   const style = {
