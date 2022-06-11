@@ -6,7 +6,7 @@ import { UserContext, BaseUri } from "../../../context/UserContext";
 import { useRouter } from "next/router";
 
 // URI
-const baseUri = "http://localhost:5000";
+const baseUri = "https://oic-management.herokuapp.com";
 export const getStaticProps = async () => {
   // const baseUri = useContext(BaseUri);
   console.log(baseUri);

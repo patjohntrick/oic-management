@@ -6,7 +6,7 @@ import { BaseUri } from "../../../context/UserContext";
 import { useRouter } from "next/router";
 
 // baseUri
-const baseUri = "http://localhost:5000";
+const baseUri = "https://oic-management.herokuapp.com";
 
 export const getStaticProps = async () => {
   const response = await fetch(`${baseUri}/activity`);

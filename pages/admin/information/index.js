@@ -8,7 +8,7 @@ import { UserContext } from "../../../context/UserContext";
 import { useRouter } from "next/router";
 
 // URI
-const baseUri = "http://localhost:5000";
+const baseUri = "https://oic-management.herokuapp.com";
 
 export const getStaticProps = async () => {
   const res = await fetch(`${baseUri}/user`);

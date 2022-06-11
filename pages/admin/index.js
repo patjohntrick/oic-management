@@ -2,7 +2,7 @@ import React, { createContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import Content from "../../components/admin/Dashboard/Content";
 
-const baseUri = "http://localhost:5000";
+const baseUri = "https://oic-management.herokuapp.com";
 export const getStaticProps = async () => {
   const [userResponse, moneyResponse, otherResponse, activitiesResponse] =
     await Promise.all([

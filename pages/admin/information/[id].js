@@ -5,7 +5,7 @@ import Sidebar from "../../../components/admin/Sidebar";
 import { UserContext } from "../../../context/UserContext";
 import UserId from "../../../components/admin/Information/UserId";
 
-const baseUri = "http://localhost:5000";
+const baseUri = "https://oic-management.herokuapp.com";
 export const getStaticPaths = async () => {
   const res = await axios.get(`${baseUri}/user`);
   const data = await res.data;

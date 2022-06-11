@@ -4,7 +4,7 @@ import Layout from "../components/admin/Layout";
 // import { BaseUri } from "../../../../context/UserContext";
 
 function MyApp({ Component, pageProps }) {
-  const baseUri = "http://localhost:5000";
+  const baseUri = "https://oic-management.herokuapp.com";
   return (
     <Layout>
       <BaseUri.Provider value={baseUri}>
