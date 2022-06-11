@@ -3,6 +3,7 @@ import { UserContext, BaseUri } from "../../../context/UserContext";
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { ministries } from "../../../ministries/ministriesData";
 
 const EditModal = ({ handleEditUser, data }) => {
   const baseUri = useContext(BaseUri);
@@ -170,10 +171,13 @@ const EditModal = ({ handleEditUser, data }) => {
                   <option value="" disabled selected>
                     Select Ministry
                   </option>
-                  <option value="crew ministry">Crew</option>
-                  <option value="Music Department">Music Department</option>
-                  <option value="other">Other</option>
-                  <option value="donatator">donator</option>
+                  {ministries.map((data, index) => {
+                    return (
+                      <option value={data.ministry} key={index}>
+                        {data.ministry}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             </div>
