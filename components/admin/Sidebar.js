@@ -93,25 +93,6 @@ const Navigation = () => {
               </Link>
             </div>
           </li>
-
-          {/* <li className={`${style.listItem} cursor-pointer`}>
-            <div className={style.list}>
-              <a className={style.anchor}>
-                {" "}
-                <span>
-                  <AiFillSliders />
-                </span>{" "}
-                Features
-              </a>
-            </div>
-            <div className="sub-links hidden">
-              <li>
-                <Link href="">
-                  <a>Attendance</a>
-                </Link>
-              </li>
-            </div>
-          </li> */}
         </ul>
       </div>
     </div>

@@ -41,7 +41,7 @@ const DonateOtherMemberModal = ({ handleMoneyModal }) => {
 
   // Submit
   const handleSubmit = async (userId) => {
-    // e.preventDefault();
+    e.preventDefault();
     // console.log(userId);
     const newDonation = {
       name: name.length > 0 ? name : "unknown",

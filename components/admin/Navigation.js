@@ -26,13 +26,6 @@ const Navigation = () => {
         <div className="logo-container">
           <p className={style.logo}>One In Christ Church Inc.</p>
         </div>
-        {/* <form action="">
-          <input
-            type="search"
-            placeholder="Advanced search..."
-            className={style.inputSearch}
-          />
-        </form> */}
       </div>
       <div className={style.user}>
         <div className="icon text-xl">

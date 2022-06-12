@@ -10,6 +10,7 @@ const Modal = ({ handleModal }) => {
   const [time, setTime] = useState("");
   const [date, setDate] = useState("");
   const [description, setDescription] = useState("");
+
   // router
   const router = useRouter();
   //style
@@ -28,9 +29,8 @@ const Modal = ({ handleModal }) => {
     label: "font-medium text-md",
     labelSpan: "text-purple-700",
   };
-  // baseUri
+  // baseUri context
   const baseUri = useContext(BaseUri);
-  // console.log(baseUri);
 
   // submit event
   const handleSubmit = async (e) => {
@@ -50,7 +50,8 @@ const Modal = ({ handleModal }) => {
       body: JSON.stringify(newActivities),
     });
     console.log(response);
-    window.location.reload();
+    router.reload();
+    // window.location.reload();
   };
 
   const list = ministries

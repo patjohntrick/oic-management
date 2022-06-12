@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { BaseUri, UserContext } from "../../../context/UserContext";
 import Link from "next/link";
 import { IoMdTrash } from "react-icons/io";
@@ -69,22 +69,6 @@ const FirstSection = ({ search }) => {
             </div>
           );
         })}
-      {/* <div className={style.box}>
-        <div className={style.imgContainer}>
-          <img
-            src="https://avatars.dicebear.com/api/adventurer-neutral/patrick.svg"
-            alt=""
-            className={style.img}
-          />
-        </div>
-        <div className="text-container">
-          <p className={style.name}>John Patrick Resurreccion</p>
-          <p className={style.dept}>Music Ministry</p>
-        </div>
-        <div className={style.btnContainer}>
-          <button className={style.btn}>View Profile</button>
-        </div>
-      </div> */}
     </section>
   );
 };

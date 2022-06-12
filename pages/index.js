@@ -92,13 +92,6 @@ export default function Home() {
           </div>
         </form>
       </div>
-      {/* <div className="img-container w-full h-screen absolute z-10">
-        <img
-          src="https://scontent.fmnl13-1.fna.fbcdn.net/v/t39.30808-6/271553364_4843602265708590_4417866767975776352_n.png?_nc_cat=104&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=nf-b7hQjQ1IAX-z4z1S&_nc_ht=scontent.fmnl13-1.fna&oh=00_AT90sY-tDhaD1aEfPO2FBc7RUa9Tm8KbUTCH8S9hqLvP4A&oe=62A7AC5D"
-          alt=""
-          className="w-full h-full object-cover"
-        />
-      </div> */}
     </div>
   );
 }

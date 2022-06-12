@@ -42,29 +42,11 @@ const Id = ({ data }) => {
   };
   return (
     <section className={style.body}>
-      {/* <header className={style.header}>
-        <Navigation />
-      </header>
-      <aside className={style.aside}>
-        <Sidebar />
-      </aside> */}
-      {/* content */}
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Information</header>
         <UserContext.Provider value={data}>
           <UserId />
         </UserContext.Provider>
-        {/* <section>
-          <UserContext.Provider>
-            <Content />
-          </UserContext.Provider>
-        </section> */}
-        {/* <div className="">
-          <Header />  
-        </div>
-        <div className="">
-          <FirstSection users={users} />
-        </div> */}
       </div>
     </section>
   );

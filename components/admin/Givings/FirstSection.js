@@ -1,16 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
 import { BiDonateHeart } from "react-icons/bi";
-import { AiOutlineClose } from "react-icons/ai";
-import { RiAliensFill, RiCoinsLine } from "react-icons/ri";
+import { RiCoinsLine } from "react-icons/ri";
 import { GiFlowerEmblem } from "react-icons/gi";
-import { FaUserCheck } from "react-icons/fa";
 import MoneyDonation from "./Table/MoneyDonation";
 import OtherOfferings from "./Table/OtherOfferings";
 import MoneyModal from "./MoneyModal/MoneyModal";
 import OtherOfferingsModal from "./OtherModal/OtherOfferingsModal";
 import { UserContext } from "../../../context/UserContext";
-
-// modal component
 
 // main component
 const FirstSection = () => {
@@ -24,16 +20,9 @@ const FirstSection = () => {
   // Donation data
   const { moneyDonations, otherDonations } = useContext(UserContext);
 
-  // const otherDonationList = otherDonation
-  //   .map((item) => item.amount)
-  //   .reduce((a, b) => a + b, 0);
-
   const MoneyDonationList = moneyDonations
     .map((item) => item.amount)
     .reduce((a, b) => a + b, 0);
-  // console.log(MoneyDonationList);
-
-  // console.log(totalMoneyDonation);
 
   // type of donation
   const handleMoneyDonation = () => {
@@ -42,7 +31,6 @@ const FirstSection = () => {
   const handleOtherOfferings = () => {
     setTypeDonation(true);
   };
-  // console.log(typeDonation);
 
   // subBtn
   const handleSubBtn = () => {
@@ -83,7 +71,6 @@ const FirstSection = () => {
         : " text-orange-700 border-orange-700 hover:bg-orange-700 hover:text-white "
     } cursor-pointer px-4 py-3 transition-all shadow-md rounded font-medium text-sm border-[1px] `,
   };
-  // console.log(modal);
   return (
     <>
       {moneyModal ? <MoneyModal handleMoneyModal={handleMoneyModal} /> : null}
@@ -136,8 +123,6 @@ const FirstSection = () => {
           </header>
           <div className={`container ${style.contentContainer}`}>
             {typeDonation == false ? <MoneyDonation /> : <OtherOfferings />}
-            {/* <MoneyDonation />
-            <OtherOfferings /> */}
           </div>
         </div>
       </section>

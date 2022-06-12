@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { BaseUri, UserContext } from "../../../context/UserContext";
+import { UserContext } from "../../../context/UserContext";
 import Link from "next/link";
 import EditModal from "./EditModal";
 
@@ -30,13 +30,6 @@ const UserId = () => {
       " rounded bg-red-700 hover:bg-red-800 transition-all px-6 uppercase py-3 shadow-md text-white font-medium cursor-pointer ",
     header: " flex justify-between items-center ",
   };
-
-  // donation
-  // const baseUri = useContext(BaseUri);
-  // const [donation, setDonation] = useState([]);
-  // const fetchDonation = async () => {
-  //   const response = await fetch(`${baseUri}/${data._id}`)
-  // };
 
   // total money donation
   const total = data.moneydonation.map((data) => parseInt(data.amount));
@@ -121,26 +114,7 @@ const UserId = () => {
                   {data.number}
                 </p>
               </div>
-              <div className="second-row">
-                {/* <p className={style.pInfo}>
-                  <span className={style.spanTitle}>
-                    Birthday <br />
-                  </span>
-                  {data.birthday}
-                </p>
-                <p className={style.pInfo}>
-                  <span className={style.spanTitle}>
-                    Ministry <br />
-                  </span>
-                  {data.ministry}
-                </p>
-                <p className={style.pInfo}>
-                  <span className={style.spanTitle}>
-                    Mobile no. <br />
-                  </span>
-                  {data.number}
-                </p> */}
-              </div>
+              <div className="second-row"></div>
             </div>
           </div>
           <div className="donation grid grid-cols-2">

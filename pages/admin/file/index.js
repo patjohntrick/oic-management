@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import Navigation from "../../../components/admin/Navigation";
-import Sidebar from "../../../components/admin/Sidebar";
 import { useRouter } from "next/router";
 
 const File = () => {
@@ -26,22 +24,8 @@ const File = () => {
   }, []);
   return (
     <section className={style.body}>
-      {/* <header className={style.header}>
-        <Navigation />
-      </header>
-      
-      <aside className={style.aside}>
-        <Sidebar />
-      </aside> */}
-      {/* content */}
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Files</header>
-        {/* <div className="">
-           <Cards />
-         </div>
-         <div>
-           <DashboardSecondSection />
-         </div> */}
       </div>
     </section>
   );

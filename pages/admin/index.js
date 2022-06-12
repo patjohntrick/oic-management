@@ -30,23 +30,6 @@ const Dashboard = ({ user, money, other, activities }) => {
   useEffect(() => {
     user, money, other, activities;
   }, [user, money, other, activities]);
-  // const videoRef = useRef(null);
-  // const getUserCamera = () => {
-  //   navigator.mediaDevices
-  //     .getUserMedia({
-  //       video: true,
-  //     })
-  //     .then((stream) => {
-  //       const video = videoRef.current;
-  //       video.srcObject = stream;
-  //       video.play();
-  //     })
-  //     .catch((e) => console.error(e));
-  // };
-  // useEffect(() => {
-  //   getUserCamera();
-  // }, [videoRef]);
-  // Style
 
   // style
   const style = {

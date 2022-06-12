@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
-import { BaseUri, UserContext } from "../../../../context/UserContext";
-import { AiFillCheckCircle, AiFillEdit, AiFillDelete } from "react-icons/ai";
+import { UserContext } from "../../../../context/UserContext";
 
 const MoneyDonation = () => {
   // donation data

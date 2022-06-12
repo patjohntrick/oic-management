@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { EventApi } from "../../../../pages/admin/activity/index";
 import { AiOutlineCheck, AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { BaseUri } from "../../../../context/UserContext";
@@ -54,12 +54,7 @@ const ActivityTable = () => {
             return (
               <React.Fragment key={data._id}>
                 <div className={style.tableContent}>
-                  <p>
-                    {/* {data.title.length > 15
-                      ? `${data.title.slice(0, 15)}...`
-                      : data.title} */}
-                    {data.title}
-                  </p>
+                  <p>{data.title}</p>
                   <p>
                     {data.description.length > 100
                       ? `${data.description.slice(0, 80)}...`

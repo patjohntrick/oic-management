@@ -1,9 +1,5 @@
 import React, { useEffect } from "react";
 import Content from "../../../components/admin/Information/Content";
-import FirstSection from "../../../components/admin/Information/FirstSection";
-import Header from "../../../components/admin/Information/Header";
-import Navigation from "../../../components/admin/Navigation";
-import Sidebar from "../../../components/admin/Sidebar";
 import { UserContext } from "../../../context/UserContext";
 import { useRouter } from "next/router";
 
@@ -20,7 +16,6 @@ export const getStaticProps = async () => {
 };
 
 const Information = ({ users }) => {
-  // console.log(users);
   // Style
   const style = {
     body: "h-screen relative",
@@ -44,14 +39,6 @@ const Information = ({ users }) => {
   }, []);
   return (
     <section className={style.body}>
-      {/* <header className={style.header}>
-        <Navigation />
-      </header>
-     
-      <aside className={style.aside}>
-        <Sidebar />
-      </aside> */}
-      {/* content */}
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Information</header>
 
@@ -60,12 +47,6 @@ const Information = ({ users }) => {
             <Content />
           </UserContext.Provider>
         </section>
-        {/* <div className="">
-          <Header />  
-        </div>
-        <div className="">
-          <FirstSection users={users} />
-        </div> */}
       </div>
     </section>
   );

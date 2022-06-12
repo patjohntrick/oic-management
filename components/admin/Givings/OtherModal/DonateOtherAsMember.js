@@ -2,8 +2,6 @@ import React, { useState, useContext, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { UserContext, BaseUri } from "../../../../context/UserContext";
-// import {ministries} from '../../../../ministries/ministriesData'
-// import { BaseUri } from "../../../context/BaseUri";
 
 const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
   const baseUri = useContext(BaseUri);
@@ -12,7 +10,6 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
 
   const userSorted = user.sort((a, b) => (a.name > b.name ? 1 : -1));
   // console.log(userSorted);
-  // console.log(userList);
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -21,10 +18,6 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
 
   const [selectedUserId, setSelectedUserId] = useState("");
 
-  const [emailError, setEmailError] = useState({
-    message: "",
-    status: false,
-  });
   const style = {
     section:
       "absolute top-0 left-0 bg-black/80 p-2 text-heading  z-10 w-full h-full",
@@ -85,8 +78,9 @@ const DonateOtherAsMember = ({ handleOtherOfferingsModal }) => {
     ]);
     const userDonation = await res1.json();
     const postDonation = await res2.json();
-    // console.log(data);
-    window.location.reload();
+
+    router.reload();
+    // window.location.reload();
   };
 
   return (

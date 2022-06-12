@@ -1,9 +1,7 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { UserContext, BaseUri } from "../../../../context/UserContext";
-// import { BaseUri } from "../../../context/BaseUri";
-// import { UserContext } from "../../../context/UserContext";
 
 const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
   const baseUri = useContext(BaseUri);
@@ -12,7 +10,6 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
 
   const userSorted = user.sort((a, b) => (a.name > b.name ? 1 : -1));
   // console.log(userSorted);
-  // console.log(userList);
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -55,7 +52,8 @@ const DonateOtherAsGuest = ({ handleOtherOfferingsModal }) => {
       body: JSON.stringify(data),
     });
     console.log(res);
-    window.location.reload();
+    router.reload();
+    // window.location.reload();
   };
 
   return (

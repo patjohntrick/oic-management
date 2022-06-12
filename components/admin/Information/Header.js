@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
-
 import { AiOutlineClose } from "react-icons/ai";
-
 import { BaseUri } from "../../../context/UserContext";
 import { ministries } from "../../../ministries/ministriesData";
+import { useRouter } from "next/router";
 
 // modal component
 const Modal = ({ handleModal }) => {
   const baseUri = useContext(BaseUri);
+  const router = useRouter();
 
   const [name, setName] = useState("");
   const [gender, setGender] = useState("");
@@ -43,7 +43,8 @@ const Modal = ({ handleModal }) => {
     });
     const data = await res.json();
     if (res.status == 200) {
-      window.location.reload();
+      router.reload();
+      // window.location.reload();
     } else if (res.status == 400) {
       setEmailError({ message: data.message, status: true });
       setEmail("");
@@ -192,11 +193,6 @@ const Modal = ({ handleModal }) => {
                       );
                     })
                     .sort((a, b) => (a.ministry > b.ministry ? 1 : -1))}
-
-                  {/* <option value="crew ministry">Crew</option>
-                  <option value="Music Department">Music Department</option>
-                  <option value="other">Other</option>
-                  <option value="donatator">donator</option> */}
                 </select>
               </div>
             </div>

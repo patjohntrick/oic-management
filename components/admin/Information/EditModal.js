@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { UserContext, BaseUri } from "../../../context/UserContext";
+import { BaseUri } from "../../../context/UserContext";
 import { AiOutlineClose } from "react-icons/ai";
 import axios from "axios";
 import { useRouter } from "next/router";
@@ -18,10 +18,6 @@ const EditModal = ({ handleEditUser, data }) => {
   const [ministry, setMinistry] = useState(data.ministry);
   const [password, setPassword] = useState();
 
-  const [emailError, setEmailError] = useState({
-    message: "",
-    status: false,
-  });
   const style = {
     section:
       "absolute top-0 left-0 bg-black/80 p-2 text-heading  z-10 w-full h-full",

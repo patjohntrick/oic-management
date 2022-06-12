@@ -1,8 +1,5 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import Navigation from "../../../components/admin/Navigation";
-import Sidebar from "../../../components/admin/Sidebar";
+import React, { createContext, useEffect, useState } from "react";
 import Content from "../../../components/admin/Activity/Content";
-import { BaseUri } from "../../../context/UserContext";
 import { useRouter } from "next/router";
 
 // baseUri
@@ -21,8 +18,6 @@ export const getStaticProps = async () => {
 export const EventApi = createContext();
 
 const Event = ({ activityList }) => {
-  // state
-  const [eventList, setEventList] = useState([]);
   const style = {
     body: "h-screen relative",
     aside: "fixed w-[20%] z-20",
@@ -32,19 +27,6 @@ const Event = ({ activityList }) => {
     cardWrapper: "flex",
     dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
   };
-
-  // basuUri
-  // const baseUri = useContext(BaseUri);
-
-  // fetchList
-  // const fetchList = async () => {
-  //   const res = await fetch(`${baseUri}/event`);
-  //   const data = await res.json();
-  //   setEventList(data);
-  // };
-  // useEffect(() => {
-  //   fetchList();
-  // }, []);
 
   // router
   const router = useRouter();
@@ -58,22 +40,8 @@ const Event = ({ activityList }) => {
   }, []);
   return (
     <section className={style.body}>
-      {/* <header className={style.header}>
-        <Navigation />
-      </header>
-     
-      <aside className={style.aside}>
-        <Sidebar />
-      </aside> */}
-
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Activities</header>
-        {/* <div className="">
-           <Cards />
-         </div>
-         <div>
-           <DashboardSecondSection />
-         </div> */}
         <EventApi.Provider value={{ activityList }}>
           <div className="">
             <Content />

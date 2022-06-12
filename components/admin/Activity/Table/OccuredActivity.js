@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { EventApi } from "../../../../pages/admin/activity/index";
-import { AiOutlineCheck, AiOutlineRedo, AiFillDelete } from "react-icons/ai";
+import { AiOutlineRedo, AiFillDelete } from "react-icons/ai";
 import { BaseUri } from "../../../../context/UserContext";
 import { useRouter } from "next/router";
 
@@ -9,7 +9,7 @@ const OccuredActivity = () => {
   const { activityList } = useContext(EventApi);
   //   console.log(activityList);
 
-  //baseUri
+  // baseUri context
   const baseUri = useContext(BaseUri);
 
   // router
@@ -55,12 +55,7 @@ const OccuredActivity = () => {
             return (
               <React.Fragment key={data._id}>
                 <div className={style.tableContent}>
-                  <p>
-                    {/* {data.title.length > 15
-                      ? `${data.title.slice(0, 15)}...`
-                      : data.title} */}
-                    {data.title}
-                  </p>
+                  <p>{data.title}</p>
                   <p>
                     {data.description.length > 100
                       ? `${data.description.slice(0, 80)}...`

@@ -2,9 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { UserContext } from "../../../../context/UserContext";
-import { Context } from "../../../../context/Context";
 import { BaseUri } from "../../../../context/UserContext";
-// import { UserContext } from "../../../context/UserContext";
 
 const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
   const router = useRouter();
@@ -12,7 +10,6 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
 
   const userSorted = user.sort((a, b) => (a.name > b.name ? 1 : -1));
   // console.log(userSorted);
-  // console.log(userList);
 
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
@@ -59,7 +56,7 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
 
   // Submit
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const date = new Date();
     // const monthList = [
     //   "Jan",
@@ -85,10 +82,6 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
       residence,
       date: `${date}`,
     };
-    const userMoneyDonation = {
-      amount,
-      date: `${date}`,
-    };
     const [res1, res2] = await Promise.all([
       fetch(`${baseUri}/donation/money/post`, {
         method: "POST",
@@ -110,20 +103,8 @@ const DonateMoneyMemberModal = ({ handleMoneyModal }) => {
     console.log(postDonation);
     console.log(userDonation);
 
-    // console.log(newDonation);
-
-    // const res = await fetch(`${baseUri}/donation/money/post`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify(newDonation),
-    // });
-    // const data = await res.json();
-    // console.log(newDonation);
-    // router.reload();
-    window.location.reload();
-    // router.reload();
+    // window.location.reload();
+    router.reload();
   };
 
   return (
