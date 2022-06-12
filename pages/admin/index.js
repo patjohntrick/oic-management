@@ -27,6 +27,9 @@ export const DashboardContext = createContext();
 // maint component
 const Dashboard = ({ user, money, other, activities }) => {
   // Camera
+  useEffect(() => {
+    user, money, other, activities;
+  }, [user, money, other, activities]);
   // const videoRef = useRef(null);
   // const getUserCamera = () => {
   //   navigator.mediaDevices
