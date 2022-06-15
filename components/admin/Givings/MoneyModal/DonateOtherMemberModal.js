@@ -40,7 +40,7 @@ const DonateOtherMemberModal = ({ handleMoneyModal }) => {
   };
 
   // Submit
-  const handleSubmit = async (userId) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log(userId);
     const newDonation = {

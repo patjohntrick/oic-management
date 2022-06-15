@@ -24,7 +24,7 @@ const Modal = ({ handleModal }) => {
     modalContainer:
       "modalContainer bg-white rounded w-[500px] py-2 px-4 border-t-2 border-purple-800 absolute top-[60px] left-[50%] translate-x-[-50%]",
     input:
-      "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded mt-1 w-full",
+      "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded mt-1 w-full capitalize",
     form: "space-y-4",
     label: "font-medium text-md",
     labelSpan: "text-purple-700",
@@ -34,7 +34,7 @@ const Modal = ({ handleModal }) => {
 
   // submit event
   const handleSubmit = async (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     const newActivities = {
       title,
       attendee,
@@ -139,7 +139,7 @@ const Modal = ({ handleModal }) => {
                   type="date"
                   id="date"
                   name="date"
-                  className={style.input}
+                  className={`${style.input}` + `lowercase`}
                   required
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
@@ -158,7 +158,7 @@ const Modal = ({ handleModal }) => {
                 cols="20"
                 rows="4"
                 required
-                className={style.input}
+                className={`${style.input}` + `normal-case`}
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
               ></textarea>
