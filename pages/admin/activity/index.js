@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 // baseUri
 const baseUri = "https://oic-management.herokuapp.com";
 
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const response = await fetch(`${baseUri}/activity`);
   const data = await response.json();
 

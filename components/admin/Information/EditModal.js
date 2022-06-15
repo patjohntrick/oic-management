@@ -28,7 +28,7 @@ const EditModal = ({ handleEditUser, data }) => {
     modalContainer:
       "modalContainer bg-white rounded w-[600px] py-2 px-4 border-t-2 border-purple-800 absolute top-[80px] left-[50%] translate-x-[-50%]",
     input:
-      "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded mt-1 w-full",
+      "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded mt-1 w-full capitalize",
     form: "space-y-4",
     label: "font-medium text-md",
     labelSpan: "text-purple-700",
@@ -48,7 +48,7 @@ const EditModal = ({ handleEditUser, data }) => {
 
     const res = await axios.put(`${baseUri}/user/edit/${data._id}`, editData);
     const resData = await res.data;
-    router.reload();
+    router.push("/admin/information");
     // console.log(resData);
   };
 

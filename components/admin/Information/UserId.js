@@ -11,7 +11,7 @@ const UserId = () => {
   const handleEditUser = () => {
     setEditUser(!editUser);
   };
-  console.log(editUser);
+  // console.log(editUser);
 
   // Style
   const style = {
@@ -33,7 +33,7 @@ const UserId = () => {
 
   // total money donation
   const total = data.moneydonation.map((data) => parseInt(data.amount));
-  console.log(total);
+  // console.log(total);
   return (
     <>
       {editUser ? (
