@@ -4,6 +4,7 @@ import { DashboardContext } from "../../../pages/admin";
 
 const DashboardSecondSection = () => {
   const { user } = useContext(DashboardContext);
+  console.log(user);
 
   // const dashboardUserStart = dashboardUserList.length - 5;
   // const dashboardUserFormatted = dashboardUserList.slice(
