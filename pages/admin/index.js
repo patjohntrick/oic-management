@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import Content from "../../components/admin/Dashboard/Content";
 
 const baseUri = "https://oic-management.herokuapp.com";
-export const getStaticProps = async () => {
+export const getServerSideProps = async () => {
   const [userResponse, moneyResponse, otherResponse, activitiesResponse] =
     await Promise.all([
       fetch(`${baseUri}/user`),
@@ -18,7 +18,6 @@ export const getStaticProps = async () => {
 
   return {
     props: { user, money, other, activities },
-    revalidate: 10,
   };
 };
 
