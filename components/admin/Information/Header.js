@@ -197,44 +197,52 @@ const Modal = ({ handleModal }) => {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-2">
-              <div>
-                <label htmlFor="email" className={style.label}>
-                  Email <span className={style.labelSpan}>*</span>
-                </label>
-                {/* trigger when email is invalid */}
-                <label htmlFor="" className="text-xs ml-2 text-red-800">
-                  {emailError.message}
-                </label>
-                <br />
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  className={`${
-                    emailError.status
-                      ? "px-3 py-3 text-sm outline-none border-[1px] border-red-800 rounded mt-1 w-full"
-                      : "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded mt-1 w-full"
-                  }`}
-                />
-              </div>
-              <div>
-                <label htmlFor="password" className={style.label}>
-                  Password <span className={style.labelSpan}>*</span>
-                </label>
-                <br />
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  className={style.input}
-                />
+            <div>
+              {/* note */}
+              <p className="text-xs italic">
+                {" "}
+                <span className="font-semibold">Note:</span> You can use the
+                credential below when the Member Portal is done.{" "}
+              </p>
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <label htmlFor="email" className={style.label}>
+                    Email <span className={style.labelSpan}>*</span>
+                  </label>
+                  {/* trigger when email is invalid */}
+                  <label htmlFor="" className="text-xs ml-2 text-red-800">
+                    {emailError.message}
+                  </label>
+                  <br />
+                  <input
+                    type="email"
+                    name="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    className={`${
+                      emailError.status
+                        ? "px-3 py-3 text-sm outline-none border-[1px] border-red-800 rounded mt-1 w-full"
+                        : "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded mt-1 w-full"
+                    }`}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="password" className={style.label}>
+                    Password <span className={style.labelSpan}>*</span>
+                  </label>
+                  <br />
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                    className={style.input}
+                  />
+                </div>
               </div>
             </div>
 
