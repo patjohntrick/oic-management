@@ -1,7 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BaseUri, UserContext } from "../../../context/UserContext";
 import Link from "next/link";
 import { IoMdTrash } from "react-icons/io";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const FirstSection = ({ search }) => {
   const baseUri = useContext(BaseUri);
@@ -27,10 +29,32 @@ const FirstSection = ({ search }) => {
     });
     const data = await res.json();
     console.log(data);
+    toast.error(`${data.name} deleted!`, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
     window.location.reload();
   };
+
+  const testing = () => {};
   return (
     <section className={style.container}>
+      {/* <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      /> */}
       {users
         .filter((user) => {
           if (search === "") {
@@ -50,7 +74,7 @@ const FirstSection = ({ search }) => {
                   <IoMdTrash />
                 </p>
               </div>
-              <div className={style.imgContainer}>
+              <div className={style.imgContainer} onClick={testing}>
                 <img
                   src={`https://avatars.dicebear.com/api/adventurer-neutral/${user.name}.svg`}
                   alt=""
@@ -69,6 +93,7 @@ const FirstSection = ({ search }) => {
             </div>
           );
         })}
+      <ToastContainer />
     </section>
   );
 };

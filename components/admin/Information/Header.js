@@ -3,6 +3,7 @@ import { AiOutlineClose } from "react-icons/ai";
 import { BaseUri } from "../../../context/UserContext";
 import { ministries } from "../../../ministries/ministriesData";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
 
 // modal component
 const Modal = ({ handleModal }) => {
@@ -43,6 +44,15 @@ const Modal = ({ handleModal }) => {
     });
     const data = await res.json();
     if (res.status == 200) {
+      // toast(`${name} successfully added!`, {
+      //   position: "top-right",
+      //   autoClose: 5000,
+      //   hideProgressBar: false,
+      //   closeOnClick: true,
+      //   pauseOnHover: true,
+      //   draggable: true,
+      //   progress: undefined,
+      // });
       router.reload();
       // window.location.reload();
     } else if (res.status == 400) {
