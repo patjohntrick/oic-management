@@ -1,8 +1,8 @@
-import React, { createContext, useEffect } from "react";
-import { useRouter } from "next/router";
-import Content from "../../components/admin/Dashboard/Content";
+import React, { createContext, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Content from '../../components/admin/Dashboard/Content';
 
-const baseUri = "https://oic-management.herokuapp.com";
+const baseUri = 'https://oic-backend-production.up.railway.app';
 export const getServerSideProps = async () => {
   const [userResponse, moneyResponse, otherResponse, activitiesResponse] =
     await Promise.all([
@@ -33,13 +33,13 @@ const Dashboard = ({ user, money, other, activities }) => {
 
   // style
   const style = {
-    body: "h-screen relative",
-    aside: "fixed w-[20%] z-20",
-    header: "fixed w-[80%] ml-[20%] z-20",
+    body: 'h-screen relative',
+    aside: 'fixed w-[20%] z-20',
+    header: 'fixed w-[80%] ml-[20%] z-20',
     cardContainer:
-      "absolute top-[10vh] left-[20%] w-[80%] px-6 py-4 bg-purple-100 min-h-[90vh]",
-    cardWrapper: "flex",
-    dashboardText: " text-2xl text-[#444a53] font-medium mb-2",
+      'absolute top-[10vh] left-[20%] w-[80%] px-6 py-4 bg-purple-100 min-h-[90vh]',
+    cardWrapper: 'flex',
+    dashboardText: ' text-2xl text-[#444a53] font-medium mb-2',
   };
 
   // router
@@ -47,9 +47,9 @@ const Dashboard = ({ user, money, other, activities }) => {
 
   // localStorage
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     if (!token) {
-      router.push("/");
+      router.push('/');
     }
   }, []);
 
@@ -58,7 +58,7 @@ const Dashboard = ({ user, money, other, activities }) => {
       <div className={`${style.cardContainer} container`}>
         <header className={style.dashboardText}>Dashboard</header>
         {/* <video ref={videoRef} className="w-[100px] h-[100px] border-2" /> */}
-        <div className="">
+        <div className=''>
           <DashboardContext.Provider value={{ user, money, other, activities }}>
             <Content />
           </DashboardContext.Provider>

@@ -1,12 +1,13 @@
-import React, { useContext, useState } from "react";
-import { BaseUri } from "../../../context/UserContext";
-import { AiOutlineClose } from "react-icons/ai";
-import axios from "axios";
-import { useRouter } from "next/router";
-import { ministries } from "../../../ministries/ministriesData";
+import React, { useContext, useState } from 'react';
+import { BaseUri } from '../../../context/UserContext';
+import { AiOutlineClose } from 'react-icons/ai';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { ministries } from '../../../ministries/ministriesData';
 
 const EditModal = ({ handleEditUser, data }) => {
-  const baseUri = useContext(BaseUri);
+  // const baseUri = useContext(BaseUri);
+  const baseUri = 'https://oic-backend-production.up.railway.app';
   const router = useRouter();
 
   const [name, setName] = useState(data.name);
@@ -20,18 +21,18 @@ const EditModal = ({ handleEditUser, data }) => {
 
   const style = {
     section:
-      "absolute top-0 left-0 bg-black/80 p-2 text-heading  z-10 w-full h-full",
-    nav: "flex justify-between items-center mb-4",
-    navClose: "cursor-pointer text-purple-900",
-    container: " mb-4",
-    headerText: "font-medium text-xl mb-2",
+      'absolute top-0 left-0 bg-black/80 p-2 text-heading  z-10 w-full h-full',
+    nav: 'flex justify-between items-center mb-4',
+    navClose: 'cursor-pointer text-purple-900',
+    container: ' mb-4',
+    headerText: 'font-medium text-xl mb-2',
     modalContainer:
-      "modalContainer bg-white rounded w-[600px] py-2 px-4 border-t-2 border-purple-800 absolute top-[80px] left-[50%] translate-x-[-50%]",
+      'modalContainer bg-white rounded w-[600px] py-2 px-4 border-t-2 border-purple-800 absolute top-[80px] left-[50%] translate-x-[-50%]',
     input:
-      "px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded mt-1 w-full capitalize",
-    form: "space-y-4",
-    label: "font-medium text-md",
-    labelSpan: "text-purple-700",
+      'px-3 py-3 text-sm outline-none border-[1px] border-black/40 hover:border-black/60 focus:border-black/60 rounded mt-1 w-full capitalize',
+    form: 'space-y-4',
+    label: 'font-medium text-md',
+    labelSpan: 'text-purple-700',
   };
 
   const handleSubmit = async (e) => {
@@ -48,7 +49,7 @@ const EditModal = ({ handleEditUser, data }) => {
 
     const res = await axios.put(`${baseUri}/user/edit/${data._id}`, editData);
     const resData = await res.data;
-    router.push("/admin/information");
+    router.push('/admin/information');
     // console.log(resData);
   };
 
@@ -56,8 +57,8 @@ const EditModal = ({ handleEditUser, data }) => {
     <section className={style.section}>
       <div className={style.modalContainer}>
         <nav className={style.nav}>
-          <div className="module capitalize">
-            <span className="font-medium">Information</span> | Edit -{" "}
+          <div className='module capitalize'>
+            <span className='font-medium'>Information</span> | Edit -{' '}
             {data.name}
           </div>
           <div className={style.navClose} onClick={handleEditUser}>
@@ -65,17 +66,17 @@ const EditModal = ({ handleEditUser, data }) => {
           </div>
         </nav>
         <div className={style.container}>
-          <form action="" className={style.form} onSubmit={handleSubmit}>
-            <div className="grid grid-cols-2 gap-2">
+          <form action='' className={style.form} onSubmit={handleSubmit}>
+            <div className='grid grid-cols-2 gap-2'>
               <div>
-                <label htmlFor="name" className={style.label}>
+                <label htmlFor='name' className={style.label}>
                   Full Name <span className={style.labelSpan}>*</span>
                 </label>
                 <br />
                 <input
-                  type="text"
-                  name="name"
-                  id="name"
+                  type='text'
+                  name='name'
+                  id='name'
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   required
@@ -83,35 +84,35 @@ const EditModal = ({ handleEditUser, data }) => {
                 />
               </div>
               <div>
-                <label htmlFor="gender" className={style.label}>
+                <label htmlFor='gender' className={style.label}>
                   Gender <span className={style.labelSpan}>*</span>
                 </label>
                 <br />
                 <select
-                  name="gender"
+                  name='gender'
                   className={style.input}
                   required
                   value={gender}
                   onChange={(e) => setGender(e.target.value)}
                 >
-                  <option value="" disabled selected>
+                  <option value='' disabled selected>
                     Select Gender
                   </option>
-                  <option value="male">Male</option>
-                  <option value="female">Female</option>
+                  <option value='male'>Male</option>
+                  <option value='female'>Female</option>
                 </select>
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className='grid grid-cols-2 gap-2'>
               <div>
-                <label htmlFor="number" className={style.label}>
+                <label htmlFor='number' className={style.label}>
                   Mobile No. <span className={style.labelSpan}>*</span>
                 </label>
                 <br />
                 <input
-                  type="number"
-                  name="number"
-                  id="number"
+                  type='number'
+                  name='number'
+                  id='number'
                   value={number}
                   onChange={(e) => setNumber(e.target.value)}
                   required
@@ -119,14 +120,14 @@ const EditModal = ({ handleEditUser, data }) => {
                 />
               </div>
               <div>
-                <label htmlFor="residence" className={style.label}>
+                <label htmlFor='residence' className={style.label}>
                   Residence <span className={style.labelSpan}>*</span>
                 </label>
                 <br />
                 <input
-                  type="text"
-                  name="residence"
-                  id="residence"
+                  type='text'
+                  name='residence'
+                  id='residence'
                   value={residence}
                   onChange={(e) => setResidence(e.target.value)}
                   required
@@ -134,16 +135,16 @@ const EditModal = ({ handleEditUser, data }) => {
                 />
               </div>
             </div>
-            <div className="grid grid-cols-2 gap-2">
+            <div className='grid grid-cols-2 gap-2'>
               <div>
-                <label htmlFor="birthday" className={style.label}>
+                <label htmlFor='birthday' className={style.label}>
                   Birthday <span className={style.labelSpan}>*</span>
                 </label>
                 <br />
                 <input
-                  type="date"
-                  name="birthday"
-                  id="birthday"
+                  type='date'
+                  name='birthday'
+                  id='birthday'
                   value={birthday}
                   onChange={(e) => setBirthday(e.target.value)}
                   required
@@ -152,19 +153,19 @@ const EditModal = ({ handleEditUser, data }) => {
               </div>
 
               <div>
-                <label htmlFor="ministry" className={style.label}>
+                <label htmlFor='ministry' className={style.label}>
                   Ministry <span className={style.labelSpan}>*</span>
                 </label>
                 <br />
                 <select
-                  name="ministry"
-                  id="ministry"
+                  name='ministry'
+                  id='ministry'
                   value={ministry}
                   onChange={(e) => setMinistry(e.target.value)}
                   className={style.input}
                   required
                 >
-                  <option value="" disabled selected>
+                  <option value='' disabled selected>
                     Select Ministry
                   </option>
                   {ministries.map((data, index) => {
@@ -220,10 +221,10 @@ const EditModal = ({ handleEditUser, data }) => {
               </div>
             </div> */}
 
-            <div className="grid place-items-center">
+            <div className='grid place-items-center'>
               <button
-                type="submit"
-                className="px-3 py-3 bg-purple-700 rounded text-white shadow-md hover:bg-purple-800 text-sm w-[120px] "
+                type='submit'
+                className='px-3 py-3 bg-purple-700 rounded text-white shadow-md hover:bg-purple-800 text-sm w-[120px] '
               >
                 Save
               </button>

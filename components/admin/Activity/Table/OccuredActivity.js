@@ -1,8 +1,8 @@
-import React, { useContext } from "react";
-import { EventApi } from "../../../../pages/admin/activity/index";
-import { AiOutlineRedo, AiFillDelete } from "react-icons/ai";
-import { BaseUri } from "../../../../context/UserContext";
-import { useRouter } from "next/router";
+import React, { useContext } from 'react';
+import { EventApi } from '../../../../pages/admin/activity/index';
+import { AiOutlineRedo, AiFillDelete } from 'react-icons/ai';
+import { BaseUri } from '../../../../context/UserContext';
+import { useRouter } from 'next/router';
 
 const OccuredActivity = () => {
   //   local context
@@ -10,22 +10,23 @@ const OccuredActivity = () => {
   //   console.log(activityList);
 
   // baseUri context
-  const baseUri = useContext(BaseUri);
+  // const baseUri = useContext(BaseUri);
+  const baseUri = 'https://oic-backend-production.up.railway.app';
 
   // router
   const router = useRouter();
 
   const style = {
     tableHeader:
-      "grid grid-cols-6 capitalize text-heading font-medium bg-purple-50 p-4 rounded items-center",
+      'grid grid-cols-6 capitalize text-heading font-medium bg-purple-50 p-4 rounded items-center',
     tableContent:
-      "grid grid-cols-6 capitalize text-heading text-sm px-4 py-4 bg-white items-center gap-2",
+      'grid grid-cols-6 capitalize text-heading text-sm px-4 py-4 bg-white items-center gap-2',
   };
 
   // delete event
   const handleDelete = async (userId) => {
     const response = await fetch(`${baseUri}/activity/delete/${userId}`, {
-      method: "DELETE",
+      method: 'DELETE',
     });
     router.reload();
     console.log(response);
@@ -64,16 +65,16 @@ const OccuredActivity = () => {
                   <p>{data.time}</p>
                   <p>{data.date}</p>
                   <p>Music Department</p>
-                  <div className="flex gap-2 items-center ">
+                  <div className='flex gap-2 items-center '>
                     <div
-                      className="grid place-items-center rounded-full p-2 bg-purple-50 text-purple-700 hover:bg-purple-100 cursor-pointer"
+                      className='grid place-items-center rounded-full p-2 bg-purple-50 text-purple-700 hover:bg-purple-100 cursor-pointer'
                       onClick={() => handleDone(data._id)}
                     >
                       <AiOutlineRedo />
                     </div>
 
                     <div
-                      className="grid place-items-center rounded-full p-2 bg-red-50 text-red-700 hover:bg-red-100 cursor-pointer"
+                      className='grid place-items-center rounded-full p-2 bg-red-50 text-red-700 hover:bg-red-100 cursor-pointer'
                       onClick={() => handleDelete(data._id)}
                     >
                       <AiFillDelete />

@@ -1,9 +1,10 @@
-import "../styles/globals.css";
-import { BaseUri } from "../context/UserContext";
-import Layout from "../components/admin/Layout";
+import '../styles/globals.css';
+import { BaseUri } from '../context/UserContext';
+import Layout from '../components/admin/Layout';
 
 function MyApp({ Component, pageProps }) {
-  const baseUri = "https://oic-management.herokuapp.com";
+  // const baseUri = "https://oic-management.herokuapp.com";
+  const baseUri = 'https://oic-backend-production.up.railway.app';
   // const baseUri = "http://localhost:5000";
   return (
     <Layout>
