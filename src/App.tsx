@@ -1,12 +1,14 @@
 import React from 'react';
+
+import { RouterProvider } from 'react-router-dom';
 import { Box } from '@mui/material';
 
-import { DashboardPage } from './pages';
+import { router } from './pages';
 
 function App() {
   return (
     <Box>
-      <DashboardPage />
+      <RouterProvider router={router} />
     </Box>
   );
 }
