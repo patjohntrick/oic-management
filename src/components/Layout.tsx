@@ -49,36 +49,38 @@ export const Layout = ({ children }: LayoutProps) => {
           />
         </IconContainer>
       </Nav>
-      <SideBarContainer>
-        <SideBarInnerContainer>
-          <AddBtnContainer>
-            <MemberButton>
-              <AddBtnText>{ADD_MEMBER}</AddBtnText>
-              <AddIcon sx={{ color: appColors.white, fontSize: 20 }} />
-            </MemberButton>
-          </AddBtnContainer>
-          {LINKS.map((val, index) => {
-            return (
-              <LinkButton key={index}>
-                <StyledButton>
-                  <Typography
-                    sx={{
-                      color:
-                        val.linkTo === location.pathname
-                          ? appColors.majorelleBlue
-                          : appColors.oliveBlack,
-                    }}
-                  >
-                    {linkIcon[index]}
-                  </Typography>
-                  <LinkText>{val.text}</LinkText>
-                </StyledButton>
-              </LinkButton>
-            );
-          })}
-        </SideBarInnerContainer>
-      </SideBarContainer>
-      {children}
+      <SideBarOuterContainer>
+        <SideBarContainer>
+          <SideBarInnerContainer>
+            <AddBtnContainer>
+              <MemberButton>
+                <AddBtnText>{ADD_MEMBER}</AddBtnText>
+                <AddIcon sx={{ color: appColors.white, fontSize: 20 }} />
+              </MemberButton>
+            </AddBtnContainer>
+            {LINKS.map((val, index) => {
+              return (
+                <LinkButton key={index}>
+                  <StyledButton>
+                    <Typography
+                      sx={{
+                        color:
+                          val.linkTo === location.pathname
+                            ? appColors.majorelleBlue
+                            : appColors.oliveBlack,
+                      }}
+                    >
+                      {linkIcon[index]}
+                    </Typography>
+                    <LinkText>{val.text}</LinkText>
+                  </StyledButton>
+                </LinkButton>
+              );
+            })}
+          </SideBarInnerContainer>
+        </SideBarContainer>
+        <ContentContainer>{children}</ContentContainer>
+      </SideBarOuterContainer>
     </Container>
   );
 };
@@ -87,6 +89,7 @@ const Container = styled(Box)({
   backgroundColor: appColors.ghostWhite,
   minHeight: '100vh',
   position: 'relative',
+  overflowY: 'hidden',
 });
 
 const LogoContainer = styled(Box)({
@@ -118,22 +121,32 @@ const IconContainer = styled(Box)({
   marginRight: 40,
 });
 
+const SideBarOuterContainer = styled(Box)({
+  display: 'flex',
+  height: '93vh',
+  marginTop: '7vh',
+});
+
 const SideBarContainer = styled(Box)({
   backgroundColor: appColors.white,
-  minHeight: '100vh',
-  width: '13vw',
   minWidth: 250,
-  position: 'fixed',
-  top: 0,
-  left: 0,
-  zIndex: 1,
 });
 
 const SideBarInnerContainer = styled(Box)({
-  marginTop: '7vh',
+  marginTop: 20,
   width: '100%',
   height: 400,
   //   backgroundColor: appColors.mediumAquaMarineGreen,
+});
+
+const ContentContainer = styled(Box)({
+  minHeight: '100%',
+  width: '100%',
+  padding: 25,
+  // backgroundColor: 'grey',
+  overflowY: 'auto',
+  // marginLeft: 20,
+  // border: '1px solid black',
 });
 
 const MemberButton = styled(Box)({
@@ -152,7 +165,7 @@ const MemberButton = styled(Box)({
 const AddBtnContainer = styled(Box)({
   display: 'flex',
   justifyContent: 'center',
-  marginTop: 90,
+  // marginTop: -10,
   marginBottom: 20,
 });
 
@@ -166,6 +179,7 @@ const LinkButton = styled(Box)({
   width: '100%',
   paddingTop: 7,
   paddingBottom: 7,
+  // border: '1px solid black',
 });
 
 const StyledButton = styled(Box)({

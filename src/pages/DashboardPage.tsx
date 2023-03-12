@@ -1,22 +1,41 @@
 import React from 'react';
 
-import { Box, Button, Typography } from '@mui/material';
-import { Layout, StyledContentContainer } from '../components';
+import { Box } from '@mui/material';
 import styled from '@emotion/styled';
+
+import { Layout } from '../components';
+import { appColors } from '../constants';
 
 export const DashboardPage = () => {
   return (
     <Layout>
-      <StyledContentContainer>
-        <Container></Container>
-      </StyledContentContainer>
+      <Container>
+        <CalendarContainer></CalendarContainer>
+        <TotalContainer></TotalContainer>
+      </Container>
     </Layout>
   );
 };
 
 const Container = styled(Box)({
-  // position: 'absolute',
-  // top: '7vh',
-  // left: '',
-  // backgroundColor: 'cyan',
+  minHeight: '95%',
+  display: 'flex',
+  justifyContent: 'space-between',
+});
+
+const CalendarContainer = styled(Box)({
+  backgroundColor: appColors.white,
+  borderRadius: 10,
+  height: 350,
+  marginRight: 20,
+  width: '50%',
+  minWidth: 200,
+});
+
+const TotalContainer = styled(Box)({
+  backgroundColor: appColors.white,
+  height: 350,
+  borderRadius: 10,
+  width: '100%',
+  minWidth: 300,
 });
