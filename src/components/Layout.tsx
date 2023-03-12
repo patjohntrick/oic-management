@@ -4,14 +4,26 @@ import { Box, Button, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ChurchIcon from '@mui/icons-material/Church';
-import DashboardIcon from '@mui/icons-material/Dashboard';
 import AddIcon from '@mui/icons-material/Add';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import GroupIcon from '@mui/icons-material/Group';
+import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import GamepadIcon from '@mui/icons-material/Gamepad';
+import FolderIcon from '@mui/icons-material/Folder';
+import SegmentIcon from '@mui/icons-material/Segment';
 
 import { appColors, Strings, LINKS } from '../constants';
 
 const { LOGO, ADD_MEMBER } = Strings;
 
-const linkIcon = [];
+const linkIcon = [
+  <DashboardIcon sx={{ fontSize: 20 }} />,
+  <GroupIcon sx={{ fontSize: 20 }} />,
+  <VolunteerActivismIcon sx={{ fontSize: 20 }} />,
+  <GamepadIcon sx={{ fontSize: 20 }} />,
+  <FolderIcon sx={{ fontSize: 20 }} />,
+  <SegmentIcon sx={{ fontSize: 20 }} />,
+];
 
 type LayoutProps = {
   children: ReactNode;
@@ -43,9 +55,15 @@ export const Layout = ({ children }: LayoutProps) => {
             return (
               <LinkButton key={index}>
                 <StyledButton>
-                  <DashboardIcon
-                    sx={{ color: appColors.majorelleBlue, fontSize: 16 }}
-                  />
+                  <Typography
+                    sx={{
+                      color: !index
+                        ? appColors.majorelleBlue
+                        : appColors.oliveBlack,
+                    }}
+                  >
+                    {linkIcon[index]}
+                  </Typography>
                   <LinkText>{val.text}</LinkText>
                 </StyledButton>
               </LinkButton>
@@ -80,7 +98,6 @@ const Logo = styled(Typography)({
 const Nav = styled(Box)({
   backgroundColor: appColors.white,
   height: '7vh',
-  //   boxShadow: `2px 2px ${appColors.black10}`,
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
