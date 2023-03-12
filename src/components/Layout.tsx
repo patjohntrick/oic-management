@@ -61,7 +61,13 @@ export const Layout = ({ children }: LayoutProps) => {
             {LINKS.map((val, index) => {
               return (
                 <LinkButton key={index}>
-                  <StyledButton>
+                  <StyledButton
+                    bgcolor={
+                      location.pathname === val.linkTo
+                        ? appColors.ghostWhite
+                        : undefined
+                    }
+                  >
                     <Typography
                       sx={{
                         color:
