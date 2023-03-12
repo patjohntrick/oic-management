@@ -10,8 +10,15 @@ export const DashboardPage = () => {
   return (
     <Layout>
       <Container>
-        <CalendarContainer></CalendarContainer>
-        <TotalContainer></TotalContainer>
+        <UpperContainer>
+          <CalendarContainer></CalendarContainer>
+          <TotalContainer></TotalContainer>
+        </UpperContainer>
+        <LowerContainer>
+          <MemberSummary></MemberSummary>
+          <DonationSummary></DonationSummary>
+          <EventsSummary></EventsSummary>
+        </LowerContainer>
       </Container>
     </Layout>
   );
@@ -19,6 +26,9 @@ export const DashboardPage = () => {
 
 const Container = styled(Box)({
   minHeight: '95%',
+});
+
+const UpperContainer = styled(Box)({
   display: 'flex',
   justifyContent: 'space-between',
 });
@@ -28,8 +38,8 @@ const CalendarContainer = styled(Box)({
   borderRadius: 10,
   height: 350,
   marginRight: 20,
-  width: '50%',
-  minWidth: 200,
+  width: '60%',
+  minWidth: 250,
 });
 
 const TotalContainer = styled(Box)({
@@ -38,4 +48,33 @@ const TotalContainer = styled(Box)({
   borderRadius: 10,
   width: '100%',
   minWidth: 300,
+});
+
+const LowerContainer = styled(Box)({
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginTop: 30,
+});
+
+const MemberSummary = styled(Box)({
+  backgroundColor: appColors.white,
+  height: 400,
+  borderRadius: 10,
+  width: '100%',
+  marginRight: 20,
+});
+
+const DonationSummary = styled(Box)({
+  backgroundColor: appColors.white,
+  height: 400,
+  borderRadius: 10,
+  width: '100%',
+  marginRight: 20,
+});
+
+const EventsSummary = styled(Box)({
+  backgroundColor: appColors.white,
+  height: 400,
+  borderRadius: 10,
+  width: '100%',
 });
