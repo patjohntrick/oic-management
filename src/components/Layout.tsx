@@ -1,5 +1,6 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useRef } from 'react';
 
+import { useLocation } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
 import styled from '@emotion/styled';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -30,6 +31,11 @@ type LayoutProps = {
 };
 
 export const Layout = ({ children }: LayoutProps) => {
+  const windowSize = [window.innerWidth, window.innerHeight];
+  const location = useLocation();
+
+  console.log('width: ', windowSize[0], 'height: ', windowSize[1]);
+
   return (
     <Container>
       <Nav>
@@ -57,9 +63,10 @@ export const Layout = ({ children }: LayoutProps) => {
                 <StyledButton>
                   <Typography
                     sx={{
-                      color: !index
-                        ? appColors.majorelleBlue
-                        : appColors.oliveBlack,
+                      color:
+                        val.linkTo === location.pathname
+                          ? appColors.majorelleBlue
+                          : appColors.oliveBlack,
                     }}
                   >
                     {linkIcon[index]}
@@ -114,7 +121,8 @@ const IconContainer = styled(Box)({
 const SideBarContainer = styled(Box)({
   backgroundColor: appColors.white,
   minHeight: '100vh',
-  width: 250,
+  width: '13vw',
+  minWidth: 250,
   position: 'fixed',
   top: 0,
   left: 0,

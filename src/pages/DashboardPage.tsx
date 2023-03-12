@@ -1,16 +1,22 @@
 import React from 'react';
 
 import { Box, Button, Typography } from '@mui/material';
-import { Layout } from '../components';
+import { Layout, StyledContentContainer } from '../components';
+import styled from '@emotion/styled';
 
 export const DashboardPage = () => {
   return (
     <Layout>
-      <Typography>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit,
-        necessitatibus itaque maiores pariatur ipsam minima illum saepe quam vel
-        amet.
-      </Typography>
+      <StyledContentContainer>
+        <Container></Container>
+      </StyledContentContainer>
     </Layout>
   );
 };
+
+const Container = styled(Box)({
+  // position: 'absolute',
+  // top: '7vh',
+  // left: '',
+  // backgroundColor: 'cyan',
+});
