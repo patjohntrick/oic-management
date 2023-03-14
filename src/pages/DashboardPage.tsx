@@ -1,10 +1,16 @@
 import React from 'react';
 
-import { Box } from '@mui/material';
 import styled from '@emotion/styled';
+import { Box } from '@mui/material';
+import GroupIcon from '@mui/icons-material/Group';
+import SavingsIcon from '@mui/icons-material/Savings';
+import SpaIcon from '@mui/icons-material/Spa';
+import GradingIcon from '@mui/icons-material/Grading';
 
-import { Layout, StyledCalendar } from '../components';
-import { appColors } from '../constants';
+import { Layout, StyledCalendar, StyledTotalCard } from '../components';
+import { appColors, Strings } from '../constants';
+
+const { ACTIVITIES, FUNDS, MEMBERS, OTHER_DONATIONS } = Strings;
 
 export const DashboardPage = () => {
   return (
@@ -14,7 +20,34 @@ export const DashboardPage = () => {
           <CalendarContainer>
             <StyledCalendar />
           </CalendarContainer>
-          <TotalContainer></TotalContainer>
+          <TotalContainer>
+            <StyledTotalCard
+              text={MEMBERS}
+              count={376}
+              icon={<GroupIcon sx={{ color: '#dc2626' }} />}
+              iconBgColor={'#fee2e2'}
+            />
+
+            <StyledTotalCard
+              text={FUNDS}
+              count={234534}
+              icon={<SavingsIcon sx={{ color: '#ca8a04' }} />}
+              iconBgColor='#fef9c3'
+            />
+            <StyledTotalCard
+              text={ACTIVITIES}
+              count={26}
+              icon={<GradingIcon sx={{ color: '#16a34a' }} />}
+              iconBgColor='#dcfce7'
+            />
+            <StyledTotalCard
+              text={OTHER_DONATIONS}
+              count={108}
+              icon={<SpaIcon sx={{ color: '#2563eb' }} />}
+              iconBgColor='#e0f2fe'
+              end
+            />
+          </TotalContainer>
         </UpperContainer>
         <LowerContainer>
           <MemberSummary></MemberSummary>
@@ -46,11 +79,14 @@ const CalendarContainer = styled(Box)({
 });
 
 const TotalContainer = styled(Box)({
-  backgroundColor: appColors.white,
+  // backgroundColor: appColors.white,
   height: 350,
   borderRadius: 10,
   width: '100%',
   minWidth: 300,
+  display: 'flex',
+  alignItems: 'flex-start',
+  justifyContent: 'space-between',
 });
 
 const LowerContainer = styled(Box)({
