@@ -3,7 +3,7 @@ import React from 'react';
 import { Box } from '@mui/material';
 import styled from '@emotion/styled';
 
-import { Layout } from '../components';
+import { Layout, StyledCalendar } from '../components';
 import { appColors } from '../constants';
 
 export const DashboardPage = () => {
@@ -11,7 +11,9 @@ export const DashboardPage = () => {
     <Layout>
       <Container>
         <UpperContainer>
-          <CalendarContainer></CalendarContainer>
+          <CalendarContainer>
+            <StyledCalendar />
+          </CalendarContainer>
           <TotalContainer></TotalContainer>
         </UpperContainer>
         <LowerContainer>
@@ -38,8 +40,9 @@ const CalendarContainer = styled(Box)({
   borderRadius: 10,
   height: 350,
   marginRight: 20,
-  width: '60%',
-  minWidth: 250,
+  // width: '60%',
+  minWidth: 350,
+  overflow: 'hidden',
 });
 
 const TotalContainer = styled(Box)({
