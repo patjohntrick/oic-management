@@ -1,4 +1,4 @@
-import React, { ReactNode, useRef } from 'react';
+import React, { ReactNode, useRef, useState } from 'react';
 
 import { useLocation } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
@@ -31,10 +31,17 @@ type LayoutProps = {
 };
 
 export const Layout = ({ children }: LayoutProps) => {
-  const windowSize = [window.innerWidth, window.innerHeight];
+  const [currentTime, setCurrentTime] = useState('');
+  // const windowSize = [window.innerWidth, window.innerHeight];
   const location = useLocation();
 
-  console.log('width: ', windowSize[0], 'height: ', windowSize[1]);
+  const time = () => {
+    const date = new Date().toLocaleTimeString();
+    setCurrentTime(date);
+  };
+  setInterval(time, 1000);
+
+  // console.log('width: ', windowSize[0], 'height: ', windowSize[1]);
 
   return (
     <Container>
@@ -84,6 +91,7 @@ export const Layout = ({ children }: LayoutProps) => {
               );
             })}
           </SideBarInnerContainer>
+          <TimeContainer>{currentTime}</TimeContainer>
         </SideBarContainer>
         <ContentContainer>{children}</ContentContainer>
       </SideBarOuterContainer>
@@ -136,6 +144,7 @@ const SideBarOuterContainer = styled(Box)({
 const SideBarContainer = styled(Box)({
   backgroundColor: appColors.white,
   minWidth: 250,
+  position: 'relative',
 });
 
 const SideBarInnerContainer = styled(Box)({
@@ -143,6 +152,16 @@ const SideBarInnerContainer = styled(Box)({
   width: '100%',
   height: 400,
   //   backgroundColor: appColors.mediumAquaMarineGreen,
+});
+
+const TimeContainer = styled(Typography)({
+  fontSize: 16,
+  fontWeight: '500',
+  color: appColors.oliveBlack,
+  position: 'absolute',
+  bottom: 20,
+  width: '100%',
+  textAlign: 'center',
 });
 
 const ContentContainer = styled(Box)({
