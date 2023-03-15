@@ -21,6 +21,7 @@ export const DashboardPage = () => {
             <StyledCalendar />
           </CalendarContainer>
           <TotalContainer>
+            {/* this is supposed to be map based on the database */}
             <StyledTotalCard
               text={MEMBERS}
               count={376}
