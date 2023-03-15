@@ -7,10 +7,24 @@ import SavingsIcon from '@mui/icons-material/Savings';
 import SpaIcon from '@mui/icons-material/Spa';
 import GradingIcon from '@mui/icons-material/Grading';
 
-import { Layout, StyledCalendar, StyledTotalCard } from '../components';
+import {
+  Layout,
+  StyledCalendar,
+  StyledSummaryCard,
+  StyledTotalCard,
+} from '../components';
 import { appColors, Strings } from '../constants';
 
-const { ACTIVITIES, FUNDS, MEMBERS, OTHER_DONATIONS } = Strings;
+const {
+  ACTIVITIES,
+  FUNDS,
+  MEMBERS,
+  OTHER_DONATIONS,
+  NEW_MEMBER,
+  RECENT_DONATIONS,
+  UPCOMING_ACT,
+  COMPLETED_ACT,
+} = Strings;
 
 export const DashboardPage = () => {
   return (
@@ -51,9 +65,10 @@ export const DashboardPage = () => {
           </TotalContainer>
         </UpperContainer>
         <LowerContainer>
-          <MemberSummary></MemberSummary>
-          <DonationSummary></DonationSummary>
-          <EventsSummary></EventsSummary>
+          <StyledSummaryCard title={NEW_MEMBER} />
+          <StyledSummaryCard title={RECENT_DONATIONS} />
+          <StyledSummaryCard title={UPCOMING_ACT} />
+          {/* <EventsSummary></EventsSummary> */}
         </LowerContainer>
       </Container>
     </Layout>
