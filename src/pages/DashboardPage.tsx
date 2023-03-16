@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styled from '@emotion/styled';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import GroupIcon from '@mui/icons-material/Group';
 import SavingsIcon from '@mui/icons-material/Savings';
 import SpaIcon from '@mui/icons-material/Spa';
@@ -13,7 +13,7 @@ import {
   StyledSummaryCard,
   StyledTotalCard,
 } from '../components';
-import { appColors, Strings } from '../constants';
+import { appColors, CardSubTitle, CardTitle, Strings } from '../constants';
 
 const {
   ACTIVITIES,
@@ -34,6 +34,15 @@ export const DashboardPage = () => {
           <CalendarContainer>
             <StyledCalendar />
           </CalendarContainer>
+          <WeatherContainer>
+            <TempContainer>
+              <Box>
+                <TempAlertText>Today's temperature</TempAlertText>
+                <TempValueText>{`27 °C`}</TempValueText>
+              </Box>
+            </TempContainer>
+            <ForeCastContainer></ForeCastContainer>
+          </WeatherContainer>
           <TotalContainer>
             {/* this is supposed to be map based on the database */}
             <StyledTotalCard
@@ -94,12 +103,53 @@ const CalendarContainer = styled(Box)({
   overflow: 'hidden',
 });
 
+const WeatherContainer = styled(Box)({
+  // backgroundColor: appColors.white,
+  borderRadius: 10,
+  minWidth: 300,
+  height: 350,
+  marginRight: 20,
+});
+
+const TempContainer = styled(Box)({
+  width: '100%',
+  borderRadius: 10,
+  backgroundColor: appColors.majorelleBlue,
+  height: 100,
+  marginBottom: 20,
+  display: 'flex',
+  alignItems: 'center',
+  // padding: 20,
+  // paddingLeft: 20,
+});
+
+const TempAlertText = styled(Typography)({
+  color: appColors.white,
+  paddingLeft: 20,
+  lineHeight: 1,
+  fontSize: 12,
+  paddingTop: 5,
+});
+
+const TempValueText = styled(Typography)({
+  color: appColors.white,
+  paddingLeft: 20,
+  fontSize: 30,
+});
+
+const ForeCastContainer = styled(Box)({
+  width: '100%',
+  borderRadius: 10,
+  backgroundColor: appColors.white,
+  height: 230,
+});
+
 const TotalContainer = styled(Box)({
   // backgroundColor: appColors.white,
   height: 350,
   borderRadius: 10,
   width: '100%',
-  minWidth: 300,
+  // minWidth: 300,
   display: 'flex',
   alignItems: 'flex-start',
   justifyContent: 'space-between',
