@@ -5,11 +5,11 @@ import { appColors } from './Colors';
 
 export const CardTitle = styled(Typography)({
   fontWeight: '500',
-  fontSize: 18,
+  fontSize: 14,
   color: appColors.oliveBlack,
 });
 
 export const CardSubTitle = styled(Typography)({
-  fontWeight: '400',
-  fontSize: 14,
+  fontWeight: '500',
+  fontSize: 20,
 });
